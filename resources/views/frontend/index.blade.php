@@ -368,8 +368,8 @@
                                             <div class="card-body px-0">
                                                 <div class="d-flex align-items-center justify-content-between">
                                                     <div class="">
-                                                        <p class="mb-1 product-short-name">Topwear</p>
-                                                        <h6 class="mb-0 fw-bold product-short-title">White Polo Shirt</h6>
+                                                        <p class="mb-1 product-short-name">{{ $product->subcategory->subcategory }}</p>
+                                                        <h6 class="mb-0 fw-bold product-short-title">{{ substr($product->productName, 0, 20) . '...' }}</h6>
                                                     </div>
                                                     <div class="icon-wishlist">
                                                         <a href="javascript:;"><i class="bx bx-heart"></i></a>
@@ -386,8 +386,8 @@
                                                     class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
                                                     <div
                                                         class="h6 fw-light fw-bold text-secondary text-decoration-line-through">
-                                                        $59.00</div>
-                                                    <div class="h6 fw-bold">$48.00</div>
+                                                        &#2547;{{ $product->productPrice }}</div>
+                                                    <div class="h6 fw-bold">&#2547;{{ $product->after_discount }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -410,9 +410,7 @@
                         </div>
                         <div class="product-grid">
                             <div class="new-arrivals owl-carousel owl-theme position-relative">
-                                @foreach ($toDayDeal_products as $toDayDeal_product)
-
-                                @endforeach
+                                @foreach ($products as $product)
                                 <div class="item">
                                     <div class="card">
                                         <div class="position-relative overflow-hidden">
@@ -424,15 +422,15 @@
                                                     data-bs-target="#QuickViewProduct">Quick View</a>
                                             </div>
                                             <a href="javascript:;">
-                                                <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $toDayDeal_product->thumbnailImage) }}" class="img-fluid"
+                                                <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $product->thumbnailImage) }}" class="img-fluid"
                                                     alt="...">
                                             </a>
                                         </div>
                                         <div class="card-body px-0">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="">
-                                                    <p class="mb-1 product-short-name">Topwear</p>
-                                                    <h6 class="mb-0 fw-bold product-short-title">White Polo Shirt</h6>
+                                                    <p class="mb-1 product-short-name">{{ $product->category->name }}</p>
+                                                    <h6 class="mb-0 fw-bold product-short-title">{{ $product->productName }} </h6>
                                                 </div>
                                                 <div class="icon-wishlist">
                                                     <a href="javascript:;"><i class="bx bx-heart"></i></a>
@@ -455,6 +453,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
