@@ -44,7 +44,7 @@ Route::prefix('user')->middleware('auth')->group(function () {
     Route::post('/sub_district', [CheckoutController::class, 'sub_district'])->name('sub_district');
 
     //manage customaer account--
-    Route::get('/profile/manage-my-accounts', [ProfileController::class, 'manage_my_account',])->name('manage_my_account');
+    Route::get('/dashboard', [ProfileController::class, 'dashboard'])->name('user.dashboard');
 
     // SSLCOMMERZ Start
     Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);

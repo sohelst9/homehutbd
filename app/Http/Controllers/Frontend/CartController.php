@@ -42,6 +42,7 @@ class CartController extends Controller
     }
 
     public function insert(Request $request){
+      // return $request->all();
         $user_id = Auth::user()->id;
         $same_info =Cart::where('user_id', $user_id)->where('product_id', $request->product_id)->where('color_id', $request->color)->where('size_id', $request->size);
         if($same_info->exists()){

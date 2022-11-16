@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function manage_my_account(){
-        return view('frontend.accounts.manage_account');
+    public function dashboard(){
+        return view('frontend.accounts.dashboard');
     }
 }

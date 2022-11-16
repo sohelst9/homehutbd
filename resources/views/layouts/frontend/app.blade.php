@@ -495,12 +495,16 @@
                             <div class="top-cart-icons">
                                 <nav class="navbar navbar-expand">
                                     <ul class="navbar-nav">
-                                        <li class="nav-item"><a href="account-dashboard.html"
+                                        @auth('web')
+                                            <li class="nav-item"><a href="{{ route('user.dashboard') }}"
                                                 class="nav-link cart-link"><i class='bx bx-user'></i></a>
-                                        </li>
-                                        <li class="nav-item"><a href="wishlist.html" class="nav-link cart-link"><i
-                                                    class='bx bx-heart'></i></a>
-                                        </li>
+                                            </li>
+                                        @else
+                                            <li class="nav-item"><a style="font-size: 24px; margin-top: 3px;" href="{{ route('login') }}" class="nav-link cart-link">Login</a>
+                                            </li>
+                                        @endauth
+                                       
+                                        <!-----cart----->
                                         <li class="nav-item dropdown dropdown-large">
                                             <a href="#"
                                                 class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link"
@@ -544,6 +548,19 @@
                                                 </div>
                                             </div>
                                         </li>
+
+                                        <!-----logout----->
+                                        <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  class="nav-link cart-link">
+                                            <i class='bx bx-log-out'></i></a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </li>
+
+                                        {{-- <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form> --}}
                                     </ul>
                                 </nav>
                             </div>
@@ -565,7 +582,7 @@
                         <div class="offcanvas-body primary-menu">
                             <ul class="navbar-nav justify-content-start flex-grow-1 gap-1">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="{{ route('frontend.index') }}">Home</a>
                                 </li>
                                 {{-- <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="tv-shows.html"

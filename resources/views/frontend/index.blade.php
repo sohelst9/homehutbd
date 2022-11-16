@@ -178,7 +178,20 @@
 
 @extends('layouts.frontend.app')
 @section('content-frontend')
-        <!--end top header wrapper-->
+<style>
+    .add-carts button {
+        color: rgb(25, 22, 22);
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: #fff;
+        border: 1px solid #d7d7d7;
+    }
+</style>
         <!--start slider section-->
         <section class="slider-section mb-4">
             <div class="first-slider p-0">
@@ -353,14 +366,25 @@
                                     <div class="col">
                                         <div class="card">
                                             <div class="position-relative overflow-hidden">
-                                                <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                                    <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
-                                                </div>
+                                                <form action="{{ route('cart.insert') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="quntity" value="1">
+                                                    @auth('web')
+                                                        <div class="add-cart add-carts position-absolute top-0 end-0 mt-3 me-3">
+                                                            <button class="" type="submit"><i class='bx bx-cart-add'></i></button>
+                                                        </div>
+                                                    @else
+                                                        <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                                            <a href="{{ route('register') }}"><i class='bx bx-cart-add'></i></a>
+                                                        </div>
+                                                    @endauth
+                                                </form>
                                                 <div class="quick-view position-absolute start-0 bottom-0 end-0">
                                                     <a href="javascript:;" data-bs-toggle="modal"
                                                         data-bs-target="#QuickViewProduct">Quick View</a>
                                                 </div>
-                                                <a href="javascript:;">
+                                                <a href="{{ route('single.Product', $product->id) }}">
                                                     <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $product->thumbnailImage) }}" class="img-fluid"
                                                         alt="...">
                                                 </a>
