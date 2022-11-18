@@ -178,20 +178,20 @@
 
 @extends('layouts.frontend.app')
 @section('content-frontend')
-<style>
-    .add-carts button {
-        color: rgb(25, 22, 22);
-        font-size: 20px;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background-color: #fff;
-        border: 1px solid #d7d7d7;
-    }
-</style>
+    <style>
+        .add-carts button {
+            color: rgb(25, 22, 22);
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 1px solid #d7d7d7;
+        }
+    </style>
         <!--start slider section-->
         <section class="slider-section mb-4">
             <div class="first-slider p-0">
@@ -376,7 +376,7 @@
                                                         </div>
                                                     @else
                                                         <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                                            <a href="{{ route('register') }}"><i class='bx bx-cart-add'></i></a>
+                                                            <a href="{{ route('login') }}"><i class='bx bx-cart-add'></i></a>
                                                         </div>
                                                     @endauth
                                                 </form>

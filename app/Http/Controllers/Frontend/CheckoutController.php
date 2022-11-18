@@ -47,66 +47,66 @@ class CheckoutController extends Controller
     public  function order(Request $request){
       // return $request->all();
         $request->validate([
-            // 'fname'=>'required',
-            // 'lname'=>'required',
-            // 'email'=>'required',
-            // 'number'=>'required',
-            // 'country'=>'required',
-            // 'division'=>'required',
-            // 'district'=>'required',
-            // 'sub_district'=>'required',
-            // 'state'=>'required',
-            // 'zip_code'=>'required',
-            // 'address'=>'required',
+            'fname'=>'required',
+            'lname'=>'required',
+            'email'=>'required',
+            'number'=>'required',
+            'country'=>'required',
+            'division'=>'required',
+            'district'=>'required',
+            'sub_district'=>'required',
+            'state'=>'required',
+            'zip_code'=>'required',
+            'address'=>'required',
             'payment_method'=>'required',
         ],[
             'payment_method.required'=>'Please Select Payment Method',
         ]);
         $user_id = Auth::user()->id;
-         //order table
-        //  $order_id = Order::insertGetId([
-        //     'user_id'=>$user_id,
-        //     'sub_total'=>$request->subtotal,
-        //     'discount'=>$request->product_discount,
-        //     'total'=>$request->total + $request->delevery_charge,
-        //     'delivery_charge'=>$request->delevery_charge,
-        //     'payment_method'=>$request->payment_method,
-        //     'created_at'=>Carbon::now(),
+        // order table
+         $order_id = Order::insertGetId([
+            'user_id'=>$user_id,
+            'sub_total'=>$request->subtotal,
+            'discount'=>$request->product_discount,
+            'total'=>$request->total + $request->delevery_charge,
+            'delivery_charge'=>$request->delevery_charge,
+            'payment_method'=>$request->payment_method,
+            'created_at'=>Carbon::now(),
 
-        // ]);
+        ]);
 
         // // billings table
-        // OrderBillingDetails::insert([
-        //     'order_id'=>$order_id,
-        //     'fname'=>$request->fname,
-        //     'lname'=>$request->lname,
-        //     'email'=>$request->email,
-        //     'phone_number'=>$request->number,
-        //     'country'=>$request->country,
-        //     'division'=>$request->division,
-        //     'district'=>$request->district,
-        //     'sub_district'=>$request->sub_district,
-        //     'state'=>$request->state,
-        //     'zip_code'=>$request->zip_code,
-        //     'address'=>$request->address,
-        //     'order_note'=>$request->order_note,
-        //     'created_at'=>Carbon::now(),
-        // ]);
+        OrderBillingDetails::insert([
+            'order_id'=>$order_id,
+            'fname'=>$request->fname,
+            'lname'=>$request->lname,
+            'email'=>$request->email,
+            'phone_number'=>$request->number,
+            'country'=>$request->country,
+            'division'=>$request->division,
+            'district'=>$request->district,
+            'sub_district'=>$request->sub_district,
+            'state'=>$request->state,
+            'zip_code'=>$request->zip_code,
+            'address'=>$request->address,
+            'order_note'=>$request->order_note,
+            'created_at'=>Carbon::now(),
+        ]);
 
         // //order product details table
          $cart_items = Cart::where('user_id', $user_id)->get();
-        // foreach ($cart_items as $cart) {
-        //     OrderProductDetails::insert([
-        //         'order_id'=>$order_id,
-        //         'product_id'=>$cart->product_id,
-        //         'product_name'=>$cart->product->productName,
-        //         'product_price'=>$cart->product->after_discount,
-        //         'quantity'=>$cart->quntity,
-        //         'color'=>$cart->color_id ?? null,
-        //         'size'=>$cart->size_id ?? null,
-        //         'created_at'=>Carbon::now(),
-        //     ]);
-        // }
+        foreach ($cart_items as $cart) {
+            OrderProductDetails::insert([
+                'order_id'=>$order_id,
+                'product_id'=>$cart->product_id,
+                'product_name'=>$cart->product->productName,
+                'product_price'=>$cart->product->after_discount,
+                'quantity'=>$cart->quntity,
+                'color'=>$cart->color_id ?? null,
+                'size'=>$cart->size_id ?? null,
+                'created_at'=>Carbon::now(),
+            ]);
+        }
 
         if($request->payment_method == 1){
 

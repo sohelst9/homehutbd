@@ -365,11 +365,15 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="{{ asset('frontend/new_asset/images/favicon-32x32.png') }}" type="image/png" />
     <!--plugins-->
     <link href="{{ asset('frontend/new_asset/plugins/OwlCarousel/css/owl.carousel.min.css') }}" rel="stylesheet" />
+
+     <!-- Font Awesome -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <link href="{{ asset('frontend/new_asset/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}"
         rel="stylesheet" />
@@ -383,7 +387,7 @@
     <link href="{{ asset('frontend/new_asset/css/app.css') }}" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
     <link href="{{ asset('frontend/new_asset/css/icons.css') }}" rel="stylesheet">
-    <title>HomeHutBd E-commerce</title>
+    <title>HomeHutBd  @yield('front_title')</title>
 </head>
 
 <body>
@@ -505,37 +509,46 @@
                                         @endauth
                                        
                                         <!-----cart----->
+                                        @php
+                                            $cart = cartCount();
+                                        @endphp
                                         <li class="nav-item dropdown dropdown-large">
                                             <a href="#"
                                                 class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link"
-                                                data-bs-toggle="dropdown"> <span class="alert-count">8</span>
+                                                data-bs-toggle="dropdown"> <span class="alert-count">{{ $cart }}</span>
                                                 <i class='bx bx-shopping-bag'></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end">
-                                                <a href="javascript:;">
+                                                <a href="{{ route('cart', '') }}">
                                                     <div class="cart-header">
-                                                        <p class="cart-header-title mb-0">8 ITEMS</p>
+                                                        <p class="cart-header-title mb-0">{{ $cart }} ITEMS</p>
                                                         <p class="cart-header-clear ms-auto mb-0">VIEW CART</p>
                                                     </div>
                                                 </a>
                                                 <div class="cart-list">
+                                                    @php
+                                                        $carts = carts();
+                                                    @endphp
+                                                    @foreach ($carts as $cartitem)
+                                                        
                                                     <a class="dropdown-item" href="javascript:;">
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-grow-1">
-                                                                <h6 class="cart-product-title">Men White T-Shirt</h6>
-                                                                <p class="cart-product-price">1 X $29.00</p>
+                                                                <h6 class="cart-product-title">{{ substr($cartitem->product->productName,0,25).'..' }}</h6>
+                                                                <p class="cart-product-price">{{ $cartitem->quntity }} X {{ $cartitem->product->after_discount }}</p>
                                                             </div>
                                                             <div class="position-relative">
                                                                 <div class="cart-product-cancel position-absolute"><i
                                                                         class='bx bx-x'></i>
                                                                 </div>
                                                                 <div class="cart-product">
-                                                                    <img src="{{ asset('frontend/new_asset/images/products/01.png') }}"
+                                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/'. $cartitem->product->thumbnailImage) }}"
                                                                         class="" alt="product image">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </a>
+                                                    @endforeach
                                                 </div>
                                                 <a href="javascript:;">
                                                     <div class="text-center cart-footer d-flex align-items-center">
@@ -546,6 +559,7 @@
                                                 <div class="d-grid p-3 border-top"> <a href="javascript:;"
                                                         class="btn btn-dark btn-ecomm">CHECKOUT</a>
                                                 </div>
+                                                
                                             </div>
                                         </li>
 
@@ -677,35 +691,18 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="about-us.html">About</a>
                                 </li>
+                                
+                                <li class="nav-item"> <a class="nav-link" href="shop-categories.html">Our Store</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact-us.html">Blog</a>
+                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="contact-us.html">Contact</a>
                                 </li>
-                                <li class="nav-item"> <a class="nav-link" href="shop-categories.html">Our Store</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;"
-                                        data-bs-toggle="dropdown">
-                                        Account
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="account-dashboard.html">Dashboard</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="account-downloads.html">Downloads</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="account-orders.html">My Orders</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="account-user-details.html">User Details</a>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="authentication-login.html">Login</a></li>
-                                        <li><a class="dropdown-item" href="authentication-register.html">Register</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                href="authentication-reset-password.html">Password</a></li>
-                                    </ul>
-                                </li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -875,6 +872,39 @@
     <!--app JS-->
     <script src="{{ asset('frontend/new_asset/js/app.js') }}"></script>
     <script src="{{ asset('frontend/new_asset/js/index.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @yield('script')
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <!-- Sweetalert 2 -->
+    @if (session('success'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'success',
+                title: '{{ session('success') }}'
+            })
+        </script>
+
+    @endif
 </body>
 
 </html>

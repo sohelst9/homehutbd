@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
         return $carts_count;
     }
 
+    function carts(){
+        $carts = Cart::where('user_id', Auth::id())->get();
+        return $carts;
+    }
+
     function categories(){
         $categories = Category::with('Subcategory')->get();
         return $categories;
