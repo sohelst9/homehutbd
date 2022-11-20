@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Frontend\Cart;
 use App\Models\Product;
@@ -15,11 +16,13 @@ class FrontendController extends Controller
 {
     public function index()
     {
+        $banners = Banner::latest()->get();
         $products = Product::orderBy('id', 'desc')->get();
         $toDayDeal_products = Product::where('to_day_deal', 'on')->get();
         return view('frontend.index', [
             'products' => $products,
             'toDayDeal_products' => $toDayDeal_products,
+            'banners'=>$banners,
         ]);
     }
     //subcategory_shop

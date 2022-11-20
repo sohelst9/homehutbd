@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ColorController;
@@ -79,6 +80,8 @@ Route::prefix('admin')->group(function () {
         Route::post('/profile/update', [AdminController::class, 'profile_update'])->name('admin.profile.update');
         Route::get('/password/change', [AdminController::class, 'password_change'])->name('admin.change.password');
         Route::post('/password/update', [AdminController::class, 'password_update'])->name('admin.password.update');
+        //banner---
+        Route::resource('banner', BannerController::class);
         //category
         Route::resource('category', CategoryController::class);
         //subcategory

@@ -197,51 +197,25 @@
             <div class="first-slider p-0">
 
                 <div class="banner-slider owl-carousel owl-theme">
-                    <div class="item">
-                        <div class="position-relative">
-                            <div class="position-absolute top-50 slider-content translate-middle">
-                                <h3 class="h3 fw-bold d-none d-md-block">New Trending</h3>
-                                <h1 class="h1 fw-bold">Women Fashion</h1>
-                                <p class="fw-bold text-dark d-none d-md-block"><i>Last call for upto 15%</i></p>
-                                <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop
-                                        Now</a>
+                    @foreach ($banners as $banner)
+                        <div class="item">
+                            <div class="position-relative">
+                                <div class="position-absolute top-50 slider-content translate-middle">
+                                    <h3 class="h3 fw-bold d-none d-md-block">{{ $banner->subtitle }}</h3>
+                                    <h1 class="h1 fw-bold">{{ $banner->title }}</h1>
+                                    <p class="fw-bold text-dark d-none d-md-block"><i>Last call for upto <span>{{ $banner->discount }}</span> %</i></p>
+                                    <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop
+                                            Now</a>
+                                    </div>
                                 </div>
+                                <a href="javascript:;">
+                                    <img src="{{ asset('storage/backend/upload/banner/' . $banner->banner) }}" class="img-fluid" alt="...">
+                                </a>
                             </div>
-                            <a href="javascript:;">
-                                <img src="{{ asset('frontend/new_asset/images/banners/01.png') }}" class="img-fluid" alt="...">
-                            </a>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="position-relative">
-                            <div class="position-absolute top-50 slider-content translate-middle">
-                                <h3 class="h3 fw-bold d-none d-md-block">New Trending</h3>
-                                <h1 class="h1 fw-bold">Men Fashion</h1>
-                                <p class="fw-bold text-dark d-none d-md-block"><i>Last call for upto 15%</i></p>
-                                <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop
-                                        Now</a>
-                                </div>
-                            </div>
-                            <a href="javascript:;">
-                                <img src="{{ asset('frontend/new_asset/images/banners/02.png') }}" class="img-fluid" alt="...">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="position-relative">
-                            <div class="position-absolute top-50 slider-content translate-middle">
-                                <h3 class="h3 fw-bold d-none d-md-block">New Trending</h3>
-                                <h1 class="h1 fw-bold">Kids Fashion</h1>
-                                <p class="fw-bold text-dark d-none d-md-block"><i>Last call for upto 15%</i></p>
-                                <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop
-                                        Now</a>
-                                </div>
-                            </div>
-                            <a href="javascript:;">
-                                <img src="{{ asset('frontend/new_asset/images/banners/04.png') }}" class="img-fluid" alt="...">
-                            </a>
-                        </div>
-                    </div>
+                    @endforeach
+                    
+              
                 </div>
 
             </div>
@@ -291,66 +265,44 @@
                     </div>
                 </section>
                 <!--end information-->
-                <!--start pramotion-->
+                <!--start categories-->
                 <section class="py-4">
                     <div class="container">
-                        <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
-                            <div class="col">
-                                <div class="card rounded-0 shadow-none bg-info bg-opacity-25">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col">
-                                            <img src="{{ asset('frontend/new_asset/images/promo/01.png') }}" class="img-fluid" alt="" />
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-body">
-                                                <h5 class="card-title text-uppercase fw-bold">Men Wear</h5>
-                                                <p class="card-text text-uppercase">Starting at $9</p>
-                                                <a href="javascript:;" class="btn btn-outline-dark btn-ecomm">SHOP
-                                                    NOW</a>
+                        <div class="separator pb-4">
+                            <div class="line"></div>
+                            <h5 class="mb-0 fw-bold separator-title">Browse Catergory</h5>
+                            <div class="line"></div>
+                        </div>
+
+                        @php
+                            $cate = categories();
+                        @endphp
+                       
+                        <div class="product-grid">
+                            <div class="browse-category owl-carousel owl-theme">
+                                @foreach ($cate as $category)
+                                    @php
+                                        $catProductCount = \App\Models\Product::catProductCount($category->id);
+                                    @endphp
+                                    <div class="item">
+                                        <div class="card rounded-0">
+                                            <div class="card-body p-0">
+                                                <img src="{{ asset('storage/backend/upload/category/' . $category->banner) }}" class="img-fluid"
+                                                    alt="...">
+                                            </div>
+                                            <div class="card-footer text-center bg-transparent border">
+                                                <h6 class="mb-0 text-uppercase fw-bold">{{ substr($category->name, 0, 18) . '..' }}</h6>
+                                                <p class="mb-0 font-12 text-uppercase"><span>{{ $catProductCount }}</span> Products</p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card rounded-0 shadow-none bg-danger bg-opacity-25">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col">
-                                            <img src="{{ asset('frontend/new_asset/images/promo/02.png') }}" class="img-fluid" alt="" />
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-body">
-                                                <h5 class="card-title text-uppercase fw-bold">Women Wear</h5>
-                                                <p class="card-text text-uppercase">Starting at $9</p> <a
-                                                    href="javascript:;" class="btn btn-outline-dark btn-ecomm">SHOP
-                                                    NOW</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card rounded-0 shadow-none bg-warning bg-opacity-25">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col">
-                                            <img src="{{ asset('frontend/new_asset/images/promo/03.png') }}" class="img-fluid" alt="" />
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-body">
-                                                <h5 class="card-title text-uppercase fw-bold">Kids Wear</h5>
-                                                <p class="card-text text-uppercase">Starting at $9</p><a
-                                                    href="javascript:;" class="btn btn-outline-dark btn-ecomm">SHOP
-                                                    NOW</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
-                        <!--end row-->
+
                     </div>
                 </section>
-                <!--end pramotion-->
+                <!--end categories-->
                 <!--start Featured product-->
                 <section class="py-4">
                     <div class="container">
@@ -552,34 +504,7 @@
                     </div>
                 </section>
                 <!--end Advertise banners-->
-                <!--start categories-->
-                <section class="py-4">
-                    <div class="container">
-                        <div class="separator pb-4">
-                            <div class="line"></div>
-                            <h5 class="mb-0 fw-bold separator-title">Browse Catergory</h5>
-                            <div class="line"></div>
-                        </div>
-
-                        <div class="product-grid">
-                            <div class="browse-category owl-carousel owl-theme">
-                                <div class="item">
-                                    <div class="card rounded-0">
-                                        <div class="card-body p-0">
-                                            <img src="{{ asset('frontend/new_asset/images/categories/01.png') }}" class="img-fluid"
-                                                alt="...">
-                                        </div>
-                                        <div class="card-footer text-center bg-transparent border">
-                                            <h6 class="mb-0 text-uppercase fw-bold">Fashion</h6>
-                                            <p class="mb-0 font-12 text-uppercase">10 Products</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!--end categories-->
+               
                 <!--start support info-->
                 <section class="py-5 bg-light">
                     <div class="container">

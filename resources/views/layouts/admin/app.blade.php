@@ -86,6 +86,17 @@
                 <span class="menu-title">Dashboard</span>
               </a>
             </li>
+
+             <!----category----->
+             <li class="nav-item menu-items">
+              <a class="nav-link" href="{{ route('banner.index') }}">
+                <span class="menu-icon">
+                  <i class="mdi mdi-speedometer"></i>
+                </span>
+                <span class="menu-title">Banner</span>
+              </a>
+            </li>
+
             <!----category----->
             <li class="nav-item menu-items">
               <a class="nav-link" href="{{ route('category.index') }}">
