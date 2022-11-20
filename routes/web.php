@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,8 +26,9 @@ Auth::routes();
 //frontend route
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 Route::get('/subcategory/shop/{subcat_id}', [FrontendController::class, 'subcategory_shop'])->name('subcategory.shop');
+Route::get('/subcategory/shop', [ShopController::class, 'product_shop'])->name('frontend.shop');
 Route::get('/category/shop/{cat_id}', [FrontendController::class, 'category_shop'])->name('category.shop');
-Route::get('/shop/{product_id}', [FrontendController::class, 'single_Product'])->name('single.Product');
+Route::get('/single/shop/{product_id}', [FrontendController::class, 'single_Product'])->name('single.Product');
 Route::post('/get-size', [FrontendController::class, 'get_size'])->name('get.size');
 Route::post('/get-quantity', [FrontendController::class, 'get_quantity'])->name('get.quantity');
 
@@ -82,6 +84,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/password/update', [AdminController::class, 'password_update'])->name('admin.password.update');
         //banner---
         Route::resource('banner', BannerController::class);
+        Route::get('banner/status/{id}',[ BannerController::class, 'status'])->name('banner.status');
         //category
         Route::resource('category', CategoryController::class);
         //subcategory

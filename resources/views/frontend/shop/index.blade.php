@@ -1,4 +1,5 @@
 @extends('layouts.frontend.app')
+@section('front_title', '/Shop')
 @section('content-frontend')
     <!--start page wrapper -->
 		<div class="page-wrapper">
@@ -7,15 +8,13 @@
 				<section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
 					<div class="container">
 						<div class="page-breadcrumb d-flex align-items-center">
-							<h3 class="breadcrumb-title pe-3">Sub Category Products</h3>
+							<h3 class="breadcrumb-title pe-3">Product Shop</h3>
 							<div class="ms-auto">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb mb-0 p-0">
 										<li class="breadcrumb-item"><a href="{{ route('frontend.index') }}"><i class="bx bx-home-alt"></i> Home</a>
 										</li>
-										<li class="breadcrumb-item"><a href="{{ route('frontend.shop') }}">Shop</a>
-										</li>
-										<li class="breadcrumb-item active" aria-current="page">Sub Category Products</li>
+										<li class="breadcrumb-item active" aria-current="page">Shop</li>
 									</ol>
 								</nav>
 							</div>
@@ -96,13 +95,13 @@
 									</div>
 									<div class="product-grid">
 										<div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 g-3 g-sm-4">
-                                            @foreach ($subcategory_product as $subcat_product)
+                                            @foreach ($products as $product)
                                                 <div class="col">
                                                     <div class="card">
                                                         <div class="position-relative overflow-hidden">
                                                             <form action="{{ route('cart.insert') }}" method="POST">
                                                                 @csrf
-                                                                <input type="hidden" name="product_id" value="{{ $subcat_product->id }}">
+                                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                                 <input type="hidden" name="quntity" value="1">
                                                                 @auth('web')
                                                                     <div class="add-cart add-carts position-absolute top-0 end-0 mt-3 me-3">
@@ -117,16 +116,16 @@
                                                         <div class="quick-view position-absolute start-0 bottom-0 end-0">
                                                             <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">Quick View</a>
                                                         </div>
-                                                        <a href="{{ route('single.Product', $subcat_product->id) }}">
-                                                            <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $subcat_product->thumbnailImage) }}" class="img-fluid" alt="...">
+                                                        <a href="{{ route('single.Product', $product->id) }}">
+                                                            <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $product->thumbnailImage) }}" class="img-fluid" alt="...">
                                                         </a>
                                                         </div>
                                                         <div class="card-body px-0">
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <div class="">
-                                                                <p class="mb-1 product-short-name">{{ $subcat_product->subcategory->subcategory }}</p>
-                                                                <a href="{{ route('single.Product', $subcat_product->id) }}">
-                                                                    <h6 class="mb-0 fw-bold product-short-title">{{ substr($subcat_product->productName, 0, 20) . '...' }}</h6>
+                                                                <p class="mb-1 product-short-name">{{ $product->subcategory->subcategory }}</p>
+                                                                <a href="{{ route('single.Product', $product->id) }}">
+                                                                    <h6 class="mb-0 fw-bold product-short-title">{{ substr($product->productName, 0, 20) . '...' }}</h6>
                                                                 </a>
                                                             </div>
                                                             <div class="icon-wishlist">
@@ -141,37 +140,22 @@
                                                             <i class="bx bxs-star text-warning"></i>
                                                         </div>
                                                         <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
-                                                            <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">&#2547;{{ $subcat_product->productPrice }}</div>
-                                                            <div class="h6 fw-bold">&#2547;{{ $subcat_product->after_discount }}</div>
+                                                            <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">&#2547;{{ $product->productPrice }}</div>
+                                                            <div class="h6 fw-bold">&#2547;{{ $product->after_discount }}</div>
                                                         </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             @endforeach
-										</div><!--end row-->
-
+											  
+										  </div><!--end row-->
+			
 									</div>
 									<hr>
 									<nav class="d-flex justify-content-between" aria-label="Page navigation">
+										
 										<ul class="pagination">
-											<li class="page-item"><a class="page-link" href="javascript:;"><i class='bx bx-chevron-left'></i> Prev</a>
-											</li>
-										</ul>
-										<ul class="pagination">
-											<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
-											</li>
-											<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">2</a>
-											</li>
-											<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">3</a>
-											</li>
-											<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">4</a>
-											</li>
-											<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">5</a>
-											</li>
-										</ul>
-										<ul class="pagination">
-											<li class="page-item"><a class="page-link" href="javascript:;" aria-label="Next">Next <i class='bx bx-chevron-right'></i></a>
-											</li>
+											{{ $products->links() }}
 										</ul>
 									</nav>
 								</div>

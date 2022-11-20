@@ -1,197 +1,5 @@
-{{-- @extends('layouts.frontend.app')
-@section('main_container')
-        <style>
-
-        </style>
-        <!-- Featured Start -->
-    <div class="container-fluid pt-5">
-        <div class="row px-xl-5 pb-3">
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
-                    <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Featured End -->
-
-
-        <!-- Categories Start -->
-        <div class="container-fluid cate_section">
-            <div class="mb-2 head_title">
-                <h2>Categories</h2>
-            </div>
-            <div class="row px-xl-5 pb-3">
-                @php
-                    $cate = categories();
-                @endphp
-                @foreach ($cate as $category)
-                    @php
-                        $catProductCount = \App\Models\Product::catProductCount($category->id);
-                    @endphp
-                    <div class="col-lg-2 col-md-3 col-sm-4 pb-1">
-                        <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                            <a href="{{ route('category.shop', $category->id) }}" class="catProduct_count">
-                                <p class="text-center">{{ $catProductCount }} Products</p>
-                            </a>
-                            <a href="{{ route('category.shop', $category->id) }}"
-                                class="cat-img position-relative overflow-hidden mb-3">
-                                <img class="img-fluid" src="{{ asset('storage/backend/upload/category/' . $category->banner) }}"
-                                    alt="">
-                            </a>
-                            <h5 class="font-weight-semi-bold m-0 cat_name">{{ substr($category->name, 0, 20) . '..' }}</h5>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        <!-- Categories End -->
-
-
-        <!-- Offer Start -->
-        <div class="container-fluid offer pt-5">
-        <div class="row px-xl-5">
-            <div class="col-md-6 pb-4">
-                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
-                    <img src="{{ asset('frontend/img/offer-1.png')}}" alt="">
-                    <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
-                        <h1 class="mb-4 font-weight-semi-bold">Spring Collection</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 pb-4">
-                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
-                    <img src="{{ asset('frontend/img/offer-2.png')}}" alt="">
-                    <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
-                        <h1 class="mb-4 font-weight-semi-bold">Winter Collection</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Offer End -->
-
-
-        <!-- Products to day deal -->
-        <div class="container-fluid">
-            <div class="mb-2 head_title">
-                <h2>To Day Deal</h2>
-                <a href="">Shop More</a>
-            </div>
-            <div class="row px-xl-5 pb-3">
-                @foreach (collect($toDayDeal_products)->take(6) as $toDayDeal_product)
-                    <div class="col-lg-2 col-md-3 col-sm-4 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <a href="{{ route('single.Product', $toDayDeal_product->id) }}"><img
-                                        class="img-fluid w-100 product_image"
-                                        src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $toDayDeal_product->thumbnailImage) }}"
-                                        alt=""></a>
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <a href="{{ route('single.Product', $toDayDeal_product->id) }}"
-                                    style="text-decoration: none;">
-                                    <h6 class="pr_cate">{{ $toDayDeal_product->subcategory->subcategory }}</h6>
-                                    <h6 class="product_name">{{ substr($toDayDeal_product->productName, 0, 20) . '...' }}</h6>
-                                </a>
-                                <div class="d-flex justify-content-center">
-                                    <h6 style="font-size: 14px; color:rgb(221, 69, 27);">&#2547;
-                                        {{ $toDayDeal_product->after_discount }}</h6>
-                                    <h6 class="text-muted ml-2" style="font-size: 12px; color:#646060; margin-top:1px;">
-                                        <del>&#2547; {{ $toDayDeal_product->productPrice }}</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border product_cart">
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        <!-- to day deal -->
-
-        <!-- All Products -->
-        <div class="container-fluid">
-            <div class="mb-2 head_title">
-                <h2>All Products</h2>
-                <a href="">Shop More</a>
-            </div>
-            <div class="row px-xl-5 pb-3">
-                @foreach (collect($products)->take(18) as $product)
-                    <div class="col-lg-2 col-md-3 col-sm-4 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-
-                            <a href="{{ route('single.Product', $product->id) }}"> <img class="img-fluid w-100 product_image"
-                                src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $product->thumbnailImage) }}"
-                                alt="">
-                        </div></a>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <a href="{{ route('single.Product', $product->id) }}"
-                                    style="text-decoration: none;">
-                                    <h6 class="pr_cate">{{ $product->subcategory->subcategory }}</h6>
-                                    <h6 class="product_name">{{ substr($product->productName, 0, 20) . '...' }}</h6>
-                                </a>
-                                <div class="d-flex justify-content-center">
-                                    <h6 style="font-size: 14px; color:rgb(221, 69, 27);">&#2547; {{ $product->after_discount }}</h6>
-                                    <h6 class="text-muted ml-2" style="font-size: 12px; color:#646060; margin-top:1px;">
-                                        <del>&#2547; {{ $product->productPrice }}</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border product_cart">
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        <!-- All Products -->
-@endsection --}}
-
-
 @extends('layouts.frontend.app')
 @section('content-frontend')
-    <style>
-        .add-carts button {
-            color: rgb(25, 22, 22);
-            font-size: 20px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: #fff;
-            border: 1px solid #d7d7d7;
-        }
-    </style>
         <!--start slider section-->
         <section class="slider-section mb-4">
             <div class="first-slider p-0">
@@ -287,11 +95,15 @@
                                     <div class="item">
                                         <div class="card rounded-0">
                                             <div class="card-body p-0">
-                                                <img src="{{ asset('storage/backend/upload/category/' . $category->banner) }}" class="img-fluid"
+                                                <a href="{{ route('category.shop', $category->id) }}">
+                                                    <img src="{{ asset('storage/backend/upload/category/' . $category->banner) }}" class="img-fluid"
                                                     alt="...">
+                                                </a>
                                             </div>
                                             <div class="card-footer text-center bg-transparent border">
-                                                <h6 class="mb-0 text-uppercase fw-bold">{{ substr($category->name, 0, 18) . '..' }}</h6>
+                                                <a href="{{ route('category.shop', $category->id) }}">
+                                                    <h6 class="mb-0 text-uppercase fw-bold">{{ substr($category->name, 0, 18) . '..' }}</h6>
+                                                </a>
                                                 <p class="mb-0 font-12 text-uppercase"><span>{{ $catProductCount }}</span> Products</p>
                                             </div>
                                         </div>
@@ -314,7 +126,7 @@
                         <div class="product-grid">
                             <div
                                 class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-5 g-3 g-sm-4">
-                                @foreach ($products as $product)
+                                @foreach ($products->take(15) as $product)
                                     <div class="col">
                                         <div class="card">
                                             <div class="position-relative overflow-hidden">
@@ -345,7 +157,9 @@
                                                 <div class="d-flex align-items-center justify-content-between">
                                                     <div class="">
                                                         <p class="mb-1 product-short-name">{{ $product->subcategory->subcategory }}</p>
-                                                        <h6 class="mb-0 fw-bold product-short-title">{{ substr($product->productName, 0, 20) . '...' }}</h6>
+                                                        <a href="{{ route('single.Product', $product->id) }}">
+                                                            <h6 class="mb-0 fw-bold product-short-title">{{ substr($product->productName, 0, 20) . '...' }}</h6>
+                                                        </a>
                                                     </div>
                                                     <div class="icon-wishlist">
                                                         <a href="javascript:;"><i class="bx bx-heart"></i></a>
@@ -386,27 +200,40 @@
                         </div>
                         <div class="product-grid">
                             <div class="new-arrivals owl-carousel owl-theme position-relative">
-                                @foreach ($products as $product)
+                                @foreach ($latest_products->take(20) as $latest_product)
                                 <div class="item">
                                     <div class="card">
                                         <div class="position-relative overflow-hidden">
-                                            <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                                <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
-                                            </div>
+                                            <form action="{{ route('cart.insert') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $latest_product->id }}">
+                                                <input type="hidden" name="quntity" value="1">
+                                                @auth('web')
+                                                    <div class="add-cart add-carts position-absolute top-0 end-0 mt-3 me-3">
+                                                        <button class="" type="submit"><i class='bx bx-cart-add'></i></button>
+                                                    </div>
+                                                @else
+                                                    <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                                        <a href="{{ route('login') }}"><i class='bx bx-cart-add'></i></a>
+                                                    </div>
+                                                @endauth
+                                            </form>
                                             <div class="quick-view position-absolute start-0 bottom-0 end-0">
                                                 <a href="javascript:;" data-bs-toggle="modal"
                                                     data-bs-target="#QuickViewProduct">Quick View</a>
                                             </div>
-                                            <a href="javascript:;">
-                                                <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $product->thumbnailImage) }}" class="img-fluid"
+                                            <a href="{{ route('single.Product', $latest_product->id) }}">
+                                                <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $latest_product->thumbnailImage) }}" class="img-fluid"
                                                     alt="...">
                                             </a>
                                         </div>
                                         <div class="card-body px-0">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="">
-                                                    <p class="mb-1 product-short-name">{{ $product->category->name }}</p>
-                                                    <h6 class="mb-0 fw-bold product-short-title">{{ $product->productName }} </h6>
+                                                    <p class="mb-1 product-short-name">{{ $latest_product->category->name }}</p>
+                                                    <a href="{{ route('single.Product', $latest_product->id) }}">
+                                                        <h6 class="mb-0 fw-bold product-short-title">{{ substr($latest_product->productName, 0, 20) }} </h6>
+                                                    </a>
                                                 </div>
                                                 <div class="icon-wishlist">
                                                     <a href="javascript:;"><i class="bx bx-heart"></i></a>
@@ -423,8 +250,8 @@
                                                 class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
                                                 <div
                                                     class="h6 fw-light fw-bold text-secondary text-decoration-line-through">
-                                                    $59.00</div>
-                                                <div class="h6 fw-bold">$48.00</div>
+                                                    &#2547;{{ $latest_product->productPrice }}</div>
+                                                <div class="h6 fw-bold">&#2547;{{ $latest_product->after_discount }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -598,14 +425,17 @@
                         <h3 class="d-none">Brands</h3>
                         <div class="brand-grid">
                             <div class="brands-shops owl-carousel owl-theme border">
+
+                                @foreach ($brands as $brand)
                                 <div class="item border-end">
                                     <div class="p-4">
                                         <a href="javascript:;">
-                                            <img src="{{ asset('frontend/new_asset/images/brands/01.png') }}" class="img-fluid"
+                                            <img src="{{ asset('storage/backend/upload/brand/' . $brand->logo) }}" class="img-fluid"
                                                 alt="...">
                                         </a>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -619,101 +449,109 @@
                             <div class="col">
                                 <div class="bestseller-list mb-3">
                                     <h6 class="mb-3 text-uppercase fw-bold">Best Selling Products</h6>
-                                    <hr>
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="bottom-product-img">
-                                            <a href="product-details.html">
-                                                <img src="{{ asset('frontend/new_asset/images/products/01.png') }}" width="80"
-                                                    alt="">
-                                            </a>
-                                        </div>
-                                        <div class="">
-                                            <h6 class="mb-0 fw-light mb-1 fw-bold">Men Casual Shirts</h6>
-                                            <div class="rating"> <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
+                                    @foreach ($latest_products->take(4) as $latest_product)
+                                        <hr>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="bottom-product-img">
+                                                <a href="product-details.html">
+                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
+                                                        alt="">
+                                                </a>
                                             </div>
-                                            <p class="mb-0 pro-price"><strong>$59.00</strong>
-                                            </p>
+                                            <div class="">
+                                                <h6 class="mb-0 fw-light mb-1 fw-bold">{{ substr($latest_product->productName, 0, 30) }}</h6>
+                                                <div class="rating"> <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                </div>
+                                                <p class="mb-0 pro-price"><strong>&#2547;{{ $latest_product->after_discount }}</strong>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="featured-list mb-3">
                                     <h6 class="mb-3 text-uppercase fw-bold">Featured Products</h6>
-                                    <hr>
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="bottom-product-img">
-                                            <a href="product-details.html">
-                                                <img src="{{ asset('frontend/new_asset/images/products/05.png') }}" width="80"
-                                                    alt="">
-                                            </a>
-                                        </div>
-                                        <div class="ms-0">
-                                            <h6 class="mb-0 fw-light mb-1 fw-bold">Men Sports Shoes</h6>
-                                            <div class="rating"> <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
+                                    @foreach ($latest_products->take(4) as $latest_product)
+                                        <hr>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="bottom-product-img">
+                                                <a href="product-details.html">
+                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
+                                                        alt="">
+                                                </a>
                                             </div>
-                                            <p class="mb-0 pro-price"><strong>$59.00</strong>
-                                            </p>
+                                            <div class="">
+                                                <h6 class="mb-0 fw-light mb-1 fw-bold">{{ substr($latest_product->productName, 0, 30) }}</h6>
+                                                <div class="rating"> <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                </div>
+                                                <p class="mb-0 pro-price"><strong>&#2547;{{ $latest_product->after_discount }}</strong>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="new-arrivals-list mb-3">
                                     <h6 class="mb-3 text-uppercase fw-bold">New arrivals</h6>
-                                    <hr>
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="bottom-product-img">
-                                            <a href="jproduct-details.html">
-                                                <img src="{{ asset('frontend/new_asset/images/products/09.png') }}" width="80"
-                                                    alt="">
-                                            </a>
-                                        </div>
-                                        <div class="ms-0">
-                                            <h6 class="mb-0 fw-light mb-1 fw-bold">Men Black Cap</h6>
-                                            <div class="rating"> <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
+                                    @foreach ($latest_products->take(4) as $latest_product)
+                                        <hr>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="bottom-product-img">
+                                                <a href="product-details.html">
+                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
+                                                        alt="">
+                                                </a>
                                             </div>
-                                            <p class="mb-0 pro-price"><strong>$59.00</strong>
-                                            </p>
+                                            <div class="">
+                                                <h6 class="mb-0 fw-light mb-1 fw-bold">{{ substr($latest_product->productName, 0, 30) }}</h6>
+                                                <div class="rating"> <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                </div>
+                                                <p class="mb-0 pro-price"><strong>&#2547;{{ $latest_product->after_discount }}</strong>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="top-rated-products-list mb-3">
                                     <h6 class="mb-3 text-uppercase fw-bold">Top rated Products</h6>
-                                    <hr>
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="bottom-product-img">
-                                            <a href="product-details.html">
-                                                <img src="{{ asset('frontend/new_asset/images/products/13.png') }}" width="80"
-                                                    alt="">
-                                            </a>
-                                        </div>
-                                        <div class="ms-0">
-                                            <h6 class="mb-0 fw-light mb-1 fw-bold">Ronaldo Football</h6>
-                                            <div class="rating"> <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
+                                    @foreach ($latest_products->take(4) as $latest_product)
+                                        <hr>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="bottom-product-img">
+                                                <a href="product-details.html">
+                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
+                                                        alt="">
+                                                </a>
                                             </div>
-                                            <p class="mb-0 pro-price"><strong>$59.00</strong>
-                                            </p>
+                                            <div class="">
+                                                <h6 class="mb-0 fw-light mb-1 fw-bold">{{ substr($latest_product->productName, 0, 30) }}</h6>
+                                                <div class="rating"> <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                </div>
+                                                <p class="mb-0 pro-price"><strong>&#2547;{{ $latest_product->after_discount }}</strong>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

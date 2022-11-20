@@ -45,6 +45,7 @@
                             <th>Discount %</th>
                             <th>Added By</th>
                             <th>Banner</th>
+                            <th>Status</th>
                             <th style="width:100px">Option</th>
                         </tr>
                         </thead>
@@ -58,6 +59,15 @@
                                 <td> {{ $banner->discount }} </td>
                                 <td> {{ $banner->admin->username }} </td>
                                 <td> <img src="{{ asset('storage/backend/upload/banner/'.$banner->banner) }}" alt="" ></td>
+                                <td>
+                                    
+                                        @if($banner->status == 1)
+                                            <a href="{{ route('banner.status', $banner->id) }}" class="btn btn-primary btn-small">Active</a>
+                                        @else
+                                        <a href="{{ route('banner.status', $banner->id) }}" class="btn btn-danger btn-small">Inactive</a>
+                                        @endif
+                                   
+                                </td>
                                 <td>
                                     <a class="float-left" href="{{ url('admin/banner/'.$banner->id.'/edit') }}" style="font-size: 18px; background-color: #3e3297; border-radius:20px; padding:10px; margin: 0px 14px 0px -26px;">
                                         <i class="mdi mdi-pencil text-primary"></i>

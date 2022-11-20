@@ -153,4 +153,22 @@ class BannerController extends Controller
         Banner::find($id)->delete();
         return redirect()->route('banner.index')->with('success', 'Banner Deleted');
     }
+
+    //status
+    public function status($id){
+        $banner = Banner::find($id);
+        if($banner->status == 0){
+            Banner::find($id)->update([
+                'status'=>1
+            ]);
+        }
+        else{
+            Banner::find($id)->update([
+                'status'=>0
+            ]);
+        }
+
+        return redirect()->route('banner.index')->with('success', 'Banner Status Updated');
+
+    }
 }
