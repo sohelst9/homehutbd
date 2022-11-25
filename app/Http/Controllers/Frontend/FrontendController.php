@@ -22,7 +22,6 @@ class FrontendController extends Controller
         $products = Product::orderBy('id', 'desc')->get();
         $latest_products = Product::latest()->get();
         $brands = Brand::latest()->get();
-        $header_setting = HeaderSetting::latest()->first();
         return view('frontend.index', [
             'products' => $products,
             'latest_products' => $latest_products,

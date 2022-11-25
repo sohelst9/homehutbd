@@ -8,7 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="icon" href="{{ asset('frontend/new_asset/images/favicon-32x32.png') }}" type="image/png" />
+    @php
+        $header_setting = headersetting();
+    @endphp
+    <link rel="icon" href="{{ asset('storage/backend/upload/site_icon/' . $header_setting->site_icon) }}" type="image/png" />
     <!--plugins-->
     <link href="{{ asset('frontend/new_asset/plugins/OwlCarousel/css/owl.carousel.min.css') }}" rel="stylesheet" />
 
@@ -127,8 +130,8 @@
                                     <i class="bx bx-menu"></i>
                                 </div>
                                 <div class="logo">
-                                    <a href="index.html">
-                                        <img src="{{ asset('frontend/new_asset/images/logo-icon.png')}}" class="logo-icon" alt="" />
+                                    <a href="{{ route('frontend.index') }}">
+                                        <img src="{{ asset('storage/backend/upload/site_logo/' . $header_setting->site_logo) }}" class="logo-icon" alt="" />
                                     </a>
                                 </div>
                             </div>
@@ -145,7 +148,7 @@
                                 <div class="fs-1 text-content"><i class='bx bx-headphone'></i></div>
                                 <div class="">
                                     <p class="mb-0 text-content">CALL US NOW</p>
-                                    <h5 class="mb-0">+011 5827918</h5>
+                                    <h5 class="mb-0">{{ $header_setting->help_number ?? '01785868569' }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -373,6 +376,9 @@
 
         <!--start footer section-->
         <footer>
+            @php
+                $conatact_info = contactInfo();
+            @endphp
             <section class="py-5 border-top bg-light">
                 <div class="container">
                     <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4">
@@ -381,20 +387,15 @@
                                 <h5 class="mb-4 text-uppercase fw-bold">Contact Info</h5>
                                 <div class="address mb-3">
                                     <h6 class="mb-0 text-uppercase fw-bold">Address</h6>
-                                    <p class="mb-0">123 Street Name, City, Australia</p>
+                                    <p class="mb-0">{{ $conatact_info->address }}</p>
                                 </div>
                                 <div class="phone mb-3">
                                     <h6 class="mb-0 text-uppercase fw-bold">Phone</h6>
-                                    <p class="mb-0">Toll Free (123) 472-796</p>
-                                    <p class="mb-0">Mobile : +91-9910XXXX</p>
+                                    <p class="mb-0">{{ $conatact_info->number }}</p>
                                 </div>
                                 <div class="email mb-3">
                                     <h6 class="mb-0 text-uppercase fw-bold">Email</h6>
-                                    <p class="mb-0">mail@example.com</p>
-                                </div>
-                                <div class="working-days mb-3">
-                                    <h6 class="mb-0 text-uppercase fw-bold">WORKING DAYS</h6>
-                                    <p class="mb-0">Mon - FRI / 9:30 AM - 6:30 PM</p>
+                                    <p class="mb-0">{{ $conatact_info->email }}</p>
                                 </div>
                             </div>
                         </div>
@@ -437,14 +438,16 @@
                         </div>
                         <div class="col">
                             <div class="footer-section4">
+                                @php
+                                    $stay_informed = stayInformed();
+                                @endphp
                                 <h5 class="mb-4 text-uppercase fw-bold">Stay informed</h5>
                                 <div class="subscribe">
                                     <input type="text" class="form-control" placeholder="Enter Your Email" />
                                     <div class="mt-3 d-grid">
                                         <a href="javascript:;" class="btn btn-dark btn-ecomm">Subscribe</a>
                                     </div>
-                                    <p class="mt-3 mb-0">Subscribe to our newsletter to receive early discount offers,
-                                        updates and new products info.</p>
+                                    <p class="mt-3 mb-0">{{ $stay_informed->description }}</p>
                                 </div>
                                 <div class="download-app mt-3">
                                     <h6 class="mb-3 text-uppercase fw-bold">Download our app</h6>
@@ -469,7 +472,10 @@
             <section class="footer-strip text-center py-3 border-top positon-absolute bottom-0">
                 <div class="container">
                     <div class="d-flex flex-column flex-lg-row align-items-center gap-3 justify-content-between">
-                        <p class="mb-0">Copyright © 2022. All right reserved.</p>
+                        @php
+                            $copyright = copyright();
+                        @endphp
+                        <p class="mb-0">{{ $copyright->copyright }}</p>
                         <div class="payment-icon">
                             <div class="row row-cols-auto g-2 justify-content-end">
                                 <div class="col">
