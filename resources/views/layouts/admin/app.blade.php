@@ -145,6 +145,29 @@
               </a>
             </li>
 
+             <!----Customer list----->
+             <li class="nav-item menu-items">
+              <a class="nav-link" href="{{ route('customerlist.index') }}">
+                <span class="menu-icon">
+                  <i class="mdi mdi-speedometer"></i>
+                </span>
+                <span class="menu-title">Customer List</span>
+              </a>
+            </li>
+
+
+            <!----Website Setup----->
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="{{ route('website.setup') }}">
+                <span class="menu-icon">
+                  <i class="mdi mdi-speedometer"></i>
+                </span>
+                <span class="menu-title">Website Setup</span>
+              </a>
+            </li>
+
+            
+
             {{-- <li class="nav-item menu-items">
               <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">

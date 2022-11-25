@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Frontend\Cart;
+use App\Models\HeaderSetting;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\Subcategory;
@@ -21,6 +22,7 @@ class FrontendController extends Controller
         $products = Product::orderBy('id', 'desc')->get();
         $latest_products = Product::latest()->get();
         $brands = Brand::latest()->get();
+        $header_setting = HeaderSetting::latest()->first();
         return view('frontend.index', [
             'products' => $products,
             'latest_products' => $latest_products,

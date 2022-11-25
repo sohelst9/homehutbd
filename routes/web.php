@@ -6,10 +6,12 @@ use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ColorController;
 use App\Http\Controllers\admin\CouponController;
+use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\Admin\ProductVariationController;
 use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\subCategoryController;
+use App\Http\Controllers\admin\WebsiteSetupController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -82,6 +84,18 @@ Route::prefix('admin')->group(function () {
         Route::post('/profile/update', [AdminController::class, 'profile_update'])->name('admin.profile.update');
         Route::get('/password/change', [AdminController::class, 'password_change'])->name('admin.change.password');
         Route::post('/password/update', [AdminController::class, 'password_update'])->name('admin.password.update');
+
+        //customerlist.
+        Route::get('/customerlist',[CustomerController::class, 'index'])->name('customerlist.index');
+        Route::delete('/customerlist/delete/{id}',[CustomerController::class, 'destroy'])->name('customerlist.delete');
+
+        //website.setup--
+        Route::get('/website/setup', [WebsiteSetupController::class, 'index'])->name('website.setup');
+        Route::post('/website/setup/headersetting/store', [WebsiteSetupController::class, 'headerSetting_store'])->name('headerSetting.store');
+        Route::post('/website/setup/contactInfoWidget/store', [WebsiteSetupController::class, 'contactInfoWidget_store'])->name('contactInfoWidget.store');
+        Route::post('/website/setup/stayInformed/store', [WebsiteSetupController::class, 'stayInformed_store'])->name('stayInformed.store');
+        Route::post('/website/setup/copyright/store', [WebsiteSetupController::class, 'copyright_store'])->name('copyright.store');
+
         //banner---
         Route::resource('banner', BannerController::class);
         Route::get('banner/status/{id}',[ BannerController::class, 'status'])->name('banner.status');
