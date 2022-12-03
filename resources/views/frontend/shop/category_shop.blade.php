@@ -124,7 +124,7 @@
                                                                 data-bs-target="#QuickViewProduct">Quick View</a>
                                                         </div>
                                                         <a href="{{ route('single.Product', $cate_product->id) }}">
-                                                            <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $cate_product->thumbnailImage) }}"
+                                                            <img src="{{ asset('images/thumbnailImage/' . $cate_product->thumbnailImage) }}"
                                                                 class="img-fluid" alt="...">
                                                         </a>
                                                     </div>

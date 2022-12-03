@@ -53,7 +53,7 @@
                                 <td> {{ ($allBrand->currentpage() - 1) * $allBrand->perpage() + $loop->index + 1 }} </td>
                                 <td> {{ $brand->name }} </td>
                                 <td> {{ $brand->admin->username }} </td>
-                                <td> <img src="{{ asset('storage/backend/upload/brand/'.$brand->logo) }}" alt="" ></td>
+                                <td> <img src="{{ asset('images/brand/'.$brand->logo) }}" alt="" ></td>
                                 <td>
                                     <a class="float-left" href="{{ url('admin/brand/'.$brand->id.'/edit') }}" style="font-size: 18px; background-color: #3e3297; border-radius:20px; padding:10px; margin: 0px 14px 0px -26px;">
                                         <i class="mdi mdi-pencil text-primary"></i>

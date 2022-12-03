@@ -53,7 +53,7 @@
                                 <td> {{ ($all_category->currentpage() - 1) * $all_category->perpage() + $loop->index + 1 }} </td>
                                 <td> {{ $category->name }} </td>
                                 <td> {{ $category->admin->username }} </td>
-                                <td> <img src="{{ asset('storage/backend/upload/category/'.$category->banner) }}" alt="" ></td>
+                                <td> <img src="{{ asset('images/category/'.$category->banner) }}" alt="" ></td>
                                 <td>
                                     <a class="float-left" href="{{ url('admin/category/'.$category->id.'/edit') }}" style="font-size: 18px; background-color: #3e3297; border-radius:20px; padding:10px; margin: 0px 14px 0px -26px;">
                                         <i class="mdi mdi-pencil text-primary"></i>

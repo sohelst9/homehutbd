@@ -60,8 +60,8 @@ class BannerController extends Controller
         if($request->hasFile('banner')){
             $file = $request->file('banner');
             $file_name = 'banner'.uniqid().'.'.$file->getClientOriginalExtension();
-            $file_path = 'public/backend/upload/banner';
-            $file_location = $request->file('banner')->storeAs($file_path,$file_name);
+            $file_path = public_path('/images/banner');
+            $file_location = $request->file('banner')->move($file_path,$file_name);
         }
         $admin_id =Auth::guard('admin')->user()->id;
 
@@ -118,13 +118,13 @@ class BannerController extends Controller
                     'banner'=>'required|mimes:png,jpg,jpeg',
                 ]);
                 $banner = Banner::find($id)->banner;
-                $banner_path ='storage/backend/upload/banner/'.$banner;
+                $banner_path ='/images/banner/'.$banner;
                 File::delete(public_path($banner_path));
                 // create banner new location
                 $bannerName = $request->file('banner');
                 $newFileName = uniqid().'banners'.'.'.$bannerName->extension();
-                $path = 'public/backend/upload/banner';
-                $location = $request->file('banner')->storeAs($path,$newFileName);
+                $path = public_path('/images/banner');
+                $location = $request->file('banner')->move($path,$newFileName);
     
                 Banner::find($id)->update([
                     'banner'=>$newFileName,
@@ -147,7 +147,7 @@ class BannerController extends Controller
     public function destroy($id)
     {
         $banner_name = Banner::find($id)->banner;
-        $bannerPath ='storage/backend/upload/banner/'.$banner_name;
+        $bannerPath ='/images/banner/'.$banner_name;
         File::delete(public_path($bannerPath));
 
         Banner::find($id)->delete();

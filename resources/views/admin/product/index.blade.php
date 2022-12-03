@@ -52,7 +52,7 @@
                                 <td> {{ $product->after_discount }} </td>
                                 <td> {{ $product->to_day_deal }} </td>
                                 <td> {{ $product->featured }} </td>
-                                <td> <img src="{{ asset('storage/backend/upload/product/thumbnailImage/'.$product->thumbnailImage) }}" alt="" ></td>
+                                <td> <img src="{{ asset('images/thumbnailImage/'.$product->thumbnailImage) }}" alt="" ></td>
                                 <td><a class="btn btn-small btn-primary" href="{{ route('product.inventory',$product->id) }}">Add</a></td>
                                 <td>
                                     <a class="float-left" href="{{ route('product.edit',$product->id) }}" style="font-size: 18px; background-color: #3e3297; border-radius:20px; padding:10px; margin: 0px 14px 0px -26px;">

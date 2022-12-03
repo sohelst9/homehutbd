@@ -66,8 +66,10 @@ class AdminController extends Controller
         if($request->hasFile('profile_image')){
             $file = $request->file('profile_image');
             $file_name ='admin'.uniqid().'.'.$file->getClientOriginalExtension();
-            $path = 'public/backend/admin';
-            $file_location = $request->file('profile_image')->storeAs($path,$file_name);
+           // $path = 'public/backend/admin';
+            $path = public_path('/images/admin');
+            //$file_location = $request->file('profile_image')->storeAs($path,$file_name);
+            $file_location = $request->file('profile_image')->move($path,$file_name);
         }
         admin::insert([
             'username'=>$request->username,
@@ -107,13 +109,15 @@ class AdminController extends Controller
                     'profile_image'=>'required|mimes:png,jpg,jpeg',
                 ]);
                 $files = admin::find($request->admin_id)->profile_image;
-                $file_path ='storage/backend/admin/'.$files;
+                $file_path ='images/admin/'.$files;
                 File::delete(public_path($file_path));
                 //file new location
                 $file_name1 = $request->profile_image;
                 $new_file_names =uniqid().'admins'.'.'.$file_name1->getClientOriginalExtension();
-                $paths ='public/backend/admin';
-                $file_locations = $request->file('profile_image')->storeAs($paths,$new_file_names);
+                //$paths ='public/backend/admin';
+                $paths = public_path('/images/admin');
+                //$file_locations = $request->file('profile_image')->storeAs($paths,$new_file_names);
+                $file_locations = $request->file('profile_image')->move($paths,$new_file_names);
             }
             admin::find($request->admin_id)->update([
                 'username'=>$request->username,

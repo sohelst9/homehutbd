@@ -118,7 +118,7 @@
                                                             <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">Quick View</a>
                                                         </div>
                                                         <a href="{{ route('single.Product', $subcat_product->id) }}">
-                                                            <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $subcat_product->thumbnailImage) }}" class="img-fluid" alt="...">
+                                                            <img src="{{ asset('images/thumbnailImage/' . $subcat_product->thumbnailImage) }}" class="img-fluid" alt="...">
                                                         </a>
                                                         </div>
                                                         <div class="card-body px-0">

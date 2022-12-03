@@ -32,7 +32,7 @@
                             <div class="">
                                 <input type="file" name="site_icon" class="form-control" id="site_icon">
                                 @if ($headerinfo)
-                                    <img class="mt-2" src="{{ asset('storage/backend/upload/site_icon/'.$headerinfo->site_icon) }}" height="80px" width="90px">
+                                    <img class="mt-2" src="{{ asset('images/site_icon/'.$headerinfo->site_icon) }}" height="80px" width="90px">
                                 @else
 
                                 @endif
@@ -47,7 +47,7 @@
                             <div class="">
                                 <input type="file" name="site_logo" class="form-control" id="site_logo">
                                 @if ($headerinfo)
-                                    <img class="mt-2" src="{{ asset('storage/backend/upload/site_logo/'.$headerinfo->site_logo) }}" height="80px" width="90px">
+                                    <img class="mt-2" src="{{ asset('images/site_logo/'.$headerinfo->site_logo) }}" height="80px" width="90px">
                                 @else
                                 @endif
                                

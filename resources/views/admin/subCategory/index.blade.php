@@ -56,7 +56,7 @@
                                 <td> {{ $subcategory->Category->name }} </td>
                                 <td> {{ $subcategory->subcategory }} </td>
                                 <td> {{ $subcategory->admin->username }} </td>
-                                <td> <img src="{{ asset('storage/backend/upload/subcategory/'.$subcategory->banner) }}" alt="" ></td>
+                                <td> <img src="{{ asset('images/subcategory/'.$subcategory->banner) }}" alt="" ></td>
                                 <td>
                                     <a class="float-left" href="{{ url('admin/subCategory/'.$subcategory->id.'/edit') }}" style="font-size: 18px; background-color: #3e3297; border-radius:20px; padding:10px; margin: 0px 14px 0px -26px;">
                                         <i class="mdi mdi-pencil text-primary"></i>

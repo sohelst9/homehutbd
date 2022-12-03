@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\File;
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::all();
+        $products = Product::latest()->get();
         return view('admin.product.index',[
             'products'=>$products,
         ]);
@@ -61,8 +61,8 @@ class ProductController extends Controller
         if($request->hasfile('ThumbnailImage')){
             $file = $request->file('ThumbnailImage');
             $thumbnailImageName ='thumbnailImageName'.uniqid().'.'.$file->extension();
-            $filePath ='public/backend/upload/product/thumbnailImage';
-            $request->file('ThumbnailImage')->storeAs($filePath,$thumbnailImageName);
+            $filePath =public_path('images/thumbnailImage');
+            $request->file('ThumbnailImage')->move($filePath,$thumbnailImageName);
         }
         $user_id = Auth::guard('admin')->user()->id;
        $product_id = Product::insertGetId([
@@ -95,8 +95,8 @@ class ProductController extends Controller
           $galleryImage = $request->file('galleryImage');
           foreach($galleryImage as $gallery){
              $galleryImageName = $product_id.'-'.$gallery_id.'.'.$gallery->getClientOriginalExtension();
-             $gallery_path = 'public/backend/upload/product/galleryImage';
-             $gallery->storeAs($gallery_path,$galleryImageName);
+             $gallery_path = public_path('images/galleryImage');
+             $gallery->move($gallery_path,$galleryImageName);
 
              ProductGallery::insert([
                 'product_id'=>$product_id,
@@ -124,7 +124,7 @@ class ProductController extends Controller
     public function galleryImage_delete($galleryImage){
         $product_gallery_id = ProductGallery::findOrFail($galleryImage);
         $galleryImage_name = $product_gallery_id->gallery;
-        $oldPath ='storage/backend/upload/product/galleryImage/'.$galleryImage_name;
+        $oldPath ='images/galleryImage/'.$galleryImage_name;
         File::delete(public_path($oldPath));
         $product_gallery_id->delete();
         return response()->json(['message'=>'product Gallery Image deleted']);
@@ -145,13 +145,13 @@ class ProductController extends Controller
         $product_id1 = $request->id;
         // old thumbnailImage Remove
             $oldFile = Product::findOrFail($request->id)->thumbnailImage;
-            $oldPath ='storage/backend/upload/product/thumbnailImage/'.$oldFile;
+            $oldPath ='images/thumbnailImage/'.$oldFile;
             File::delete(public_path($oldPath));
         // new thumbnailImage upload
         $file = $request->file('ThumbnailImage');
         $thumbnailImageName ='NewthumbnailImageName'.uniqid().'.'.$file->extension();
-        $filePath ='public/backend/upload/product/thumbnailImage';
-        $request->file('ThumbnailImage')->storeAs($filePath,$thumbnailImageName);
+        $filePath =public_path('images/thumbnailImage');
+        $request->file('ThumbnailImage')->move($filePath,$thumbnailImageName);
 
         //update product table info
         Product::find($request->id)->update([
@@ -180,8 +180,8 @@ class ProductController extends Controller
                $galleryImage = $request->file('galleryImage');
                foreach($galleryImage as $gallery){
                 $galleryImageName = $product_id1.'-'.uniqid().'new'.'.'.$gallery->getClientOriginalExtension();
-                  $gallery_path = 'public/backend/upload/product/galleryImage';
-                  $gallery->storeAs($gallery_path,$galleryImageName);
+                  $gallery_path = public_path('images/galleryImage');
+                  $gallery->move($gallery_path,$galleryImageName);
 
                   ProductGallery::insert([
                     'product_id'=>$product_id1,
@@ -230,8 +230,8 @@ class ProductController extends Controller
            $galleryImage = $request->file('galleryImage');
            foreach($galleryImage as $gallery){
               $galleryImageName = $product_id1.'-'.uniqid().'new'.'.'.$gallery->getClientOriginalExtension();
-              $gallery_path = 'public/backend/upload/product/galleryImage';
-              $gallery->storeAs($gallery_path,$galleryImageName);
+              $gallery_path = public_path('images/galleryImage');
+              $gallery->move($gallery_path,$galleryImageName);
 
               ProductGallery::insert([
                 'product_id'=>$product_id1,
@@ -251,14 +251,14 @@ class ProductController extends Controller
         //delete gallery Image
         $galleryImages = ProductGallery::where('product_id', $id)->get();
         foreach ($galleryImages as $gallery) {
-            $galleryImagePaths = 'storage/backend/upload/product/galleryImage/'.$gallery->gallery;
+            $galleryImagePaths = 'images/galleryImage/'.$gallery->gallery;
             File::delete(public_path($galleryImagePaths));
             $gallery->delete();
         }
 
         // delete product thumbnail image
         $thumbnailImage = Product::find($id)->thumbnailImage;
-        $path = 'storage/backend/upload/product/thumbnailImage/'.$thumbnailImage;
+        $path = 'images/thumbnailImage/'.$thumbnailImage;
         File::delete(public_path($path));
 
         $product = Product::find($id);

@@ -17,7 +17,7 @@
                                     </div>
                                 </div>
                                 <a href="javascript:;">
-                                    <img src="{{ asset('storage/backend/upload/banner/' . $banner->banner) }}" class="img-fluid" alt="...">
+                                    <img src="{{ asset('images/banner/' . $banner->banner) }}" class="img-fluid" alt="...">
                                 </a>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                                         <div class="card rounded-0">
                                             <div class="card-body p-0">
                                                 <a href="{{ route('category.shop', $category->id) }}">
-                                                    <img src="{{ asset('storage/backend/upload/category/' . $category->banner) }}" class="img-fluid"
+                                                    <img src="{{ asset('images/category/' . $category->banner) }}" class="img-fluid"
                                                     alt="...">
                                                 </a>
                                             </div>
@@ -149,7 +149,7 @@
                                                         data-bs-target="#QuickViewProduct">Quick View</a>
                                                 </div>
                                                 <a href="{{ route('single.Product', $product->id) }}">
-                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $product->thumbnailImage) }}" class="img-fluid"
+                                                    <img src="{{ asset('images/thumbnailImage/' . $product->thumbnailImage) }}" class="img-fluid"
                                                         alt="...">
                                                 </a>
                                             </div>
@@ -223,7 +223,7 @@
                                                     data-bs-target="#QuickViewProduct">Quick View</a>
                                             </div>
                                             <a href="{{ route('single.Product', $latest_product->id) }}">
-                                                <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $latest_product->thumbnailImage) }}" class="img-fluid"
+                                                <img src="{{ asset('images/thumbnailImage/' . $latest_product->thumbnailImage) }}" class="img-fluid"
                                                     alt="...">
                                             </a>
                                         </div>
@@ -430,7 +430,7 @@
                                 <div class="item border-end">
                                     <div class="p-4">
                                         <a href="javascript:;">
-                                            <img src="{{ asset('storage/backend/upload/brand/' . $brand->logo) }}" class="img-fluid"
+                                            <img src="{{ asset('images/brand/' . $brand->logo) }}" class="img-fluid"
                                                 alt="...">
                                         </a>
                                     </div>
@@ -454,7 +454,7 @@
                                         <div class="d-flex align-items-center gap-3">
                                             <div class="bottom-product-img">
                                                 <a href="product-details.html">
-                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
+                                                    <img src="{{ asset('images/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
                                                         alt="">
                                                 </a>
                                             </div>
@@ -481,7 +481,7 @@
                                         <div class="d-flex align-items-center gap-3">
                                             <div class="bottom-product-img">
                                                 <a href="product-details.html">
-                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
+                                                    <img src="{{ asset('images/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
                                                         alt="">
                                                 </a>
                                             </div>
@@ -508,7 +508,7 @@
                                         <div class="d-flex align-items-center gap-3">
                                             <div class="bottom-product-img">
                                                 <a href="product-details.html">
-                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
+                                                    <img src="{{ asset('images/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
                                                         alt="">
                                                 </a>
                                             </div>
@@ -535,7 +535,7 @@
                                         <div class="d-flex align-items-center gap-3">
                                             <div class="bottom-product-img">
                                                 <a href="product-details.html">
-                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
+                                                    <img src="{{ asset('images/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
                                                         alt="">
                                                 </a>
                                             </div>

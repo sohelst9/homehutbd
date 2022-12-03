@@ -17,10 +17,10 @@ class CategoryController extends Controller
     {
         $a= $request->input('category_search');
         if($a != ''){
-            $all_category = Category::where('name', 'like', '%'.$a.'%')->paginate(2);
+            $all_category = Category::where('name', 'like', '%'.$a.'%')->latest()->paginate(2);
         }
         else{
-            $all_category = Category::paginate(5);
+            $all_category = Category::latest()->paginate(5);
         }
         // $all_category = Category::paginate(10);
         return view('admin.category.index',[
@@ -44,8 +44,8 @@ class CategoryController extends Controller
         if($request->hasFile('banner')){
             $file = $request->file('banner');
             $file_name = 'category'.uniqid().'.'.$file->getClientOriginalExtension();
-            $file_path = 'public/backend/upload/category';
-            $file_location = $request->file('banner')->storeAs($file_path,$file_name);
+            $file_path = public_path('/images/category');
+            $file_location = $request->file('banner')->move($file_path,$file_name);
         }
         $admin_id =Auth::guard('admin')->user()->id;
 
@@ -92,13 +92,13 @@ class CategoryController extends Controller
                 'meta_descp'=>'required',
             ]);
             $banner = Category::find($id)->banner;
-            $banner_path ='storage/backend/upload/category/'.$banner;
+            $banner_path ='images/category/'.$banner;
             File::delete(public_path($banner_path));
             // create banner new location
             $bannerName = $request->file('banner');
             $newFileName = uniqid().'categories'.'.'.$bannerName->extension();
-            $path = 'public/backend/upload/category';
-            $location = $request->file('banner')->storeAs($path,$newFileName);
+            $path = public_path('/images/category');
+            $location = $request->file('banner')->move($path,$newFileName);
 
             Category::find($id)->update([
                 'name'=>$request->name,
@@ -115,7 +115,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $banner_name = Category::find($id)->banner;
-        $bannerPath ='storage/backend/upload/category/'.$banner_name;
+        $bannerPath ='images/category/'.$banner_name;
         File::delete(public_path($bannerPath));
 
         Category::find($id)->delete();

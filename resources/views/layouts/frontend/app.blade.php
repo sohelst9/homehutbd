@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="logo">
                                     <a href="{{ route('frontend.index') }}">
-                                        <img src="{{ asset('storage/backend/upload/site_logo/' . $header_setting->site_logo) }}" class="logo-icon" alt="" />
+                                        <img src="{{ asset('images/site_logo/' . $header_setting->site_logo) }}" class="logo-icon" alt="" />
                                     </a>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@
                                                                         class='bx bx-x'></i>
                                                                 </div>
                                                                 <div class="cart-product">
-                                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/'. $cartitem->product->thumbnailImage) }}"
+                                                                    <img src="{{ asset('images/thumbnailImage/'. $cartitem->product->thumbnailImage) }}"
                                                                         class="" alt="product image">
                                                                 </div>
                                                             </div>

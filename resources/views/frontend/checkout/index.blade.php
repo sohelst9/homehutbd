@@ -166,7 +166,7 @@
                                                             <div class="my-3 border-top"></div>
                                                             <div class="d-flex align-items-center">
                                                                 <a class="d-block flex-shrink-0" href="javascript:;">
-                                                                    <img src="{{ asset('storage/backend/upload/product/thumbnailImage/'. $cart->product->thumbnailImage) }}" width="75" alt="Product">
+                                                                    <img src="{{ asset('images/thumbnailImage/'. $cart->product->thumbnailImage) }}" width="75" alt="Product">
                                                                 </a>
                                                                 <div class="ps-2">
                                                                     <h6 class="mb-1"><a href="javascript:;" class="text-dark">{{ substr($cart->product->productName, 0, 30).'..' }}</a></h6>

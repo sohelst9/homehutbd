@@ -16,13 +16,13 @@ class subCategoryController extends Controller
     {
         $inputSearch = $request->search;
         if($inputSearch != ''){
-            $subcategories = Subcategory::where('subcategory', 'Like', '%'.$inputSearch.'%')->paginate(5);
+            $subcategories = Subcategory::where('subcategory', 'Like', '%'.$inputSearch.'%')->latest()->paginate(5);
             return view('admin.subCategory.index',[
                 'subcategories'=>$subcategories,
             ]);
         }
         else{
-            $subcategories = Subcategory::paginate(5);
+            $subcategories = Subcategory::latest()->paginate(5);
             return view('admin.subCategory.index',[
                 'subcategories'=>$subcategories,
             ]);
@@ -49,8 +49,8 @@ class subCategoryController extends Controller
         if($request->hasFile('banner')){
             $file = $request->file('banner');
             $fileName = uniqid().'subCategory'.'.'.$file->extension();
-            $path = 'public/backend/upload/subcategory';
-            $request->file('banner')->storeAs($path,$fileName);
+            $path = public_path('images/subcategory');
+            $request->file('banner')->move($path,$fileName);
         }
         $id = Auth::guard('admin')->user()->id;
         Subcategory::insert([
@@ -103,13 +103,13 @@ class subCategoryController extends Controller
             ]);
               //delete old file
               $oldFile = Subcategory::find($id)->banner;
-              $oldPath ='storage/backend/upload/subcategory/'.$oldFile;
+              $oldPath ='images/subcategory/'.$oldFile;
               File::delete(public_path($oldPath));
              //new file location and name
               $file = $request->file('banner');
               $fileName = 'subCategory'.uniqid().'.'.$file->extension();
-              $path = 'public/backend/upload/subcategory';
-              $request->file('banner')->storeAs($path,$fileName);
+              $path = public_path('/images/subcategory');
+              $request->file('banner')->move($path,$fileName);
            }
            Subcategory::find($id)->update([
             'category'=>$request->category,
@@ -125,7 +125,7 @@ class subCategoryController extends Controller
     public function destroy($id)
     {
         $file = Subcategory::find($id)->banner;
-        $path = 'storage/backend/upload/subcategory/'.$file;
+        $path = 'images/subcategory/'.$file;
         File::delete(public_path($path));
 
         Subcategory::find($id)->delete();

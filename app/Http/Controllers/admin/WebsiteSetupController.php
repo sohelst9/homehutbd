@@ -38,12 +38,12 @@ class WebsiteSetupController extends Controller
             if($request->hasfile('site_icon')){
                  //delete old file
                 $oldFile = HeaderSetting::find($request->headersetting_id)->site_icon;
-                $oldPath ='storage/backend/upload/site_icon/'.$oldFile;
+                $oldPath ='images/site_icon/'.$oldFile;
                 File::delete(public_path($oldPath));
                 // upload new file
                 $extension = $request->file('site_icon')->extension();
                 $site_icon_name = uniqid().'site_icon'.'.'.$extension;
-                $request->file('site_icon')->storeAs('public/backend/upload/site_icon', $site_icon_name);
+                $request->file('site_icon')->move(public_path('images/site_icon'), $site_icon_name);
 
                 HeaderSetting::find($request->headersetting_id)->update([
                     'site_icon'=>$site_icon_name,
@@ -53,12 +53,12 @@ class WebsiteSetupController extends Controller
             if($request->hasfile('site_logo')){
                 //delete old file
                 $oldsite_logo = HeaderSetting::find($request->headersetting_id)->site_logo;
-                $oldPath ='storage/backend/upload/site_logo/'.$oldsite_logo;
+                $oldPath =public_path('images/site_logo/').$oldsite_logo;
                 File::delete(public_path($oldPath));
                 //upload new file
                 $extension = $request->file('site_logo')->extension();
                 $site_logo_name = uniqid().'site_logo'.'.'.$extension;
-                $request->file('site_logo')->storeAs('public/backend/upload/site_logo', $site_logo_name);
+                $request->file('site_logo')->move(public_path('images/site_logo'), $site_logo_name);
 
                 HeaderSetting::find($request->headersetting_id)->update([
                     'site_logo'=>$site_logo_name,
@@ -72,13 +72,13 @@ class WebsiteSetupController extends Controller
             if($request->hasfile('site_icon')){
                 $extension = $request->file('site_icon')->extension();
                 $site_icon_name = uniqid().'site_icon'.'.'.$extension;
-                $request->file('site_icon')->storeAs('public/backend/upload/site_icon', $site_icon_name);
+                $request->file('site_icon')->move(public_path('images/site_icon'), $site_icon_name);
             }
     
             if($request->hasfile('site_logo')){
                 $extension = $request->file('site_logo')->extension();
                 $site_logo_name = uniqid().'site_logo'.'.'.$extension;
-                $request->file('site_logo')->storeAs('public/backend/upload/site_logo', $site_logo_name);
+                $request->file('site_logo')->move(public_path('images/site_logo'), $site_logo_name);
             }
     
             HeaderSetting::insert([

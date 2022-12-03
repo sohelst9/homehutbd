@@ -100,7 +100,7 @@
                         @foreach ($products->galleryImages as $gallery)
 
                        <div class="delete_img" style="display: inline-block;">
-                            <img class="mt-2" src="{{ asset('storage/backend/upload/product/galleryImage/'.$gallery->gallery) }}" height="80px" width="90px">
+                            <img class="mt-2" src="{{ asset('images/galleryImage/'.$gallery->gallery) }}" height="80px" width="90px">
                             <button style="padding:0px; margin-top: -54px; margin-left: -25px;" type="button" class="galleryImageDelete btn btn-danger btn-small" value="{{ $gallery->id }}"><i class="mdi mdi-backspace" ></i></button>
                        </div>
                         @endforeach
@@ -111,7 +111,7 @@
                         <label for="ThumbnailImage" class="col-sm-3 col-form-label">Thumbnail Image <span class="text-danger">*</span> <span class="text-light">(400x400)</span></label>
                         <div class="col-sm-9">
                         <input type="file" name="ThumbnailImage" class="form-control" id="ThumbnailImage">
-                        <img class="mt-2" src="{{ asset('storage/backend/upload/product/thumbnailImage/'.$products->thumbnailImage) }}" height="80px" width="90px">
+                        <img class="mt-2" src="{{ asset('images/thumbnailImage/'.$products->thumbnailImage) }}" height="80px" width="90px">
                         @error('ThumbnailImage')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror

@@ -44,7 +44,7 @@
                     <div class="col-sm-9">
                       <input type="file" name="banner" class="form-control" id="banner">
 
-                      <img class="mt-2" src="{{ asset('storage/backend/upload/banner/'.$banner_id->banner) }}" height="80px" width="90px">
+                      <img class="mt-2" src="{{ asset('images/banner/'.$banner_id->banner) }}" height="80px" width="90px">
                     </div>
                   </div>
 

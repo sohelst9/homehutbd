@@ -40,7 +40,7 @@
                       @php
                           $profile_image = Auth::guard('admin')->user()->profile_image;
                       @endphp
-                    <img class="img-xs rounded-circle " src="{{ asset('storage/backend/admin/'.$profile_image) }}" alt="">
+                    <img class="img-xs rounded-circle " src="{{ asset('/images/admin/'.$profile_image) }}" alt="">
                     <span class="count bg-success"></span>
                   </div>
                   <div class="profile-name">
@@ -284,7 +284,7 @@
                       @php
                           $profile_image =Auth::guard('admin')->user()->profile_image;
                       @endphp
-                      <img class="img-xs rounded-circle" src="{{ asset('storage/backend/admin/'.$profile_image) }}" alt="">
+                      <img class="img-xs rounded-circle" src="{{ asset('/images/admin/'.$profile_image) }}" alt="">
                       <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ Auth::guard('admin')->user()->username }}</p>
                       <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                     </div>

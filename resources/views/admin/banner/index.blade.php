@@ -58,7 +58,7 @@
                                 <td> {{ $banner->subtitle }} </td>
                                 <td> {{ $banner->discount }} </td>
                                 <td> {{ $banner->admin->username }} </td>
-                                <td> <img src="{{ asset('storage/backend/upload/banner/'.$banner->banner) }}" alt="" ></td>
+                                <td> <img src="{{ asset('images/banner/'.$banner->banner) }}" alt="" ></td>
                                 <td>
                                     
                                         @if($banner->status == 1)

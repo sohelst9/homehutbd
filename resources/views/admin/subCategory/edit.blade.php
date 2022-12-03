@@ -50,7 +50,7 @@
                   @error('banner')
                     <p class="text-danger">{{ $message }}</p>
                   @enderror
-                  <img class="mt-2" src="{{ asset('storage/backend/upload/subcategory/'.$subcategory_id->banner) }}" height="80px" width="90px">
+                  <img class="mt-2" src="{{ asset('images/subcategory/'.$subcategory_id->banner) }}" height="80px" width="90px">
                 </div>
               </div>
 

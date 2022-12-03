@@ -53,7 +53,7 @@
                   @error('profile_image')
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
-                  <img class="mt-2" src="{{ asset('storage/backend/admin/'.$profile->profile_image) }}" height="80px" width="90px">
+                  <img class="mt-2" src="{{ asset('/images/admin/'.$profile->profile_image) }}" height="80px" width="90px">
                 </div>
               </div>
               <button type="submit" class="btn btn-primary mr-2">Save</button>

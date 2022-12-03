@@ -26,7 +26,7 @@
                   @error('logo')
                     <p class="text-danger">{{ $message }}</p>
                   @enderror
-                  <img class="mt-2" src="{{ asset('storage/backend/upload/brand/'.$brand_id->logo) }}" height="80px" width="90px">
+                  <img class="mt-2" src="{{ asset('images/brand/'.$brand_id->logo) }}" height="80px" width="90px">
 
                 </div>
               </div>

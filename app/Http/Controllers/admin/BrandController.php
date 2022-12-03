@@ -15,10 +15,10 @@ class BrandController extends Controller
     {
         $brand_search = $request->brand;
         if($brand_search != ''){
-            $allBrand = Brand::where('name', 'Like', '%'.$brand_search.'%')->paginate(5);
+            $allBrand = Brand::where('name', 'Like', '%'.$brand_search.'%')->latest()->paginate(5);
         }
         else{
-            $allBrand = Brand::paginate(10);
+            $allBrand = Brand::latest()->paginate(10);
         }
         return view('admin.brand.index',compact('allBrand'));
     }
@@ -39,8 +39,8 @@ class BrandController extends Controller
         if($request->hasFile('logo')){
             $file = $request->file('logo');
             $fileName =uniqid().'brand'.'.'.$file->extension();
-            $filePath = 'public/backend/upload/brand';
-            $request->file('logo')->storeAs($filePath,$fileName);
+            $filePath = public_path('images/brand');
+            $request->file('logo')->move($filePath,$fileName);
         }
         $admin_id =Auth::guard('admin')->user()->id;
 
@@ -81,12 +81,12 @@ class BrandController extends Controller
             if($request->hasFile('logo')){
                 //remove old file
                 $oldFile = Brand::find($id)->logo;
-                $oldPath = 'storage/backend/upload/brand/'.$oldFile;
+                $oldPath = 'images/brand/'.$oldFile;
                 File::delete(public_path($oldPath));
                 //upload new file--
                 $NewFile = $request->file('logo');
                 $NewFileName ='brand'.uniqid().'.'.$NewFile->extension();
-                $NewFilePath = 'public/backend/upload/brand';
+                $NewFilePath = public_path('images/brand');
                 $request->file('logo')->storeAs($NewFilePath,$NewFileName);
             }
             Brand::find($id)->update([
@@ -102,7 +102,7 @@ class BrandController extends Controller
     public function destroy($id)
     {
         $oldFile = Brand::find($id)->logo;
-        $oldPath = 'storage/backend/upload/brand/'.$oldFile;
+        $oldPath = 'images/brand/'.$oldFile;
         File::delete(public_path($oldPath));
 
         Brand::find($id)->delete();
