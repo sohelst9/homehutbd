@@ -87,7 +87,7 @@ class BrandController extends Controller
                 $NewFile = $request->file('logo');
                 $NewFileName ='brand'.uniqid().'.'.$NewFile->extension();
                 $NewFilePath = public_path('images/brand');
-                $request->file('logo')->storeAs($NewFilePath,$NewFileName);
+                $request->file('logo')->move($NewFilePath,$NewFileName);
             }
             Brand::find($id)->update([
                 'name'=>$request->name,

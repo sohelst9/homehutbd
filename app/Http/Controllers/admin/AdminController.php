@@ -4,6 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\admin;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Subcategory;
 use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -38,7 +42,11 @@ class AdminController extends Controller
 
     //----admin dashboard----
     public function dashboard(){
-        return view('admin.dashboard');
+        $product_count = Product::count() ?? 0;
+        $category_count = Category::count() ?? 0;
+        $subcategory_count = Subcategory::count() ?? 0;
+        $brand_count = Brand::count() ?? 0;
+        return view('admin.dashboard', compact('product_count', 'category_count', 'subcategory_count', 'brand_count'));
     }
 
     //----admin logout----
