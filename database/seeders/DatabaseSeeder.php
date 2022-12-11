@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StayInformedSeeder::class);
         $this->call(ContactInfoWidgetSeeder::class);
         $this->call(CopyrightSeeder::class);
+        $this->call(DivisionSeeder::class);
 
         
     }

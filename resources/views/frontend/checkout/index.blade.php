@@ -109,9 +109,10 @@
                                                             </div>
                                                             <div class="col-md-6 form-group">
                                                                 <label>Sub District</label>
-                                                                <select class="form-control" id="sub_district" name="sub_district">
+                                                                {{-- <select class="form-control" id="sub_district" name="sub_district">
                                                                     <option>-Select-</option>
-                                                                </select>
+                                                                </select> --}}
+                                                                <input type="text" name="sub_district" id="sub_district" class="form-control">
                                                                 @error('sub_district')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror

@@ -25,6 +25,7 @@ class ProductSeeder extends Seeder
             'barcode'=>uniqid(),
             'thumbnailImage'=>'01.png',
             'productPrice'=>'300',
+            'after_discount'=>'300',
             'description'=>'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
         ]);
 
@@ -56,6 +57,7 @@ class ProductSeeder extends Seeder
             'barcode'=>uniqid(),
             'thumbnailImage'=>'02.png',
             'productPrice'=>'500',
+            'after_discount'=>'500',
             'description'=>'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
         ]);
 
@@ -93,6 +95,7 @@ class ProductSeeder extends Seeder
             'barcode'=>uniqid(),
             'thumbnailImage'=>'03.png',
             'productPrice'=>'500',
+            'after_discount'=>'500',
             'description'=>'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
         ]);
 
@@ -124,6 +127,7 @@ class ProductSeeder extends Seeder
             'barcode'=>uniqid(),
             'thumbnailImage'=>'04.png',
             'productPrice'=>'500',
+            'after_discount'=>'500',
             'description'=>'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
         ]);
 
@@ -154,6 +158,7 @@ class ProductSeeder extends Seeder
             'barcode'=>uniqid(),
             'thumbnailImage'=>'04.png',
             'productPrice'=>'15000',
+            'after_discount'=>'15000',
             'description'=>'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
         ]);
 
