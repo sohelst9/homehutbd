@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('subcategory_id');
             $table->integer('brand_id')->nullable();
             $table->string('weight')->nullable();
-            $table->string('barcode');
+            $table->string('barcode')->nullable();
             $table->string('thumbnailImage');
             $table->integer('productPrice');
             $table->integer('discount')->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('discountDate')->nullable();
             $table->integer('quantity')->nullable();
             $table->text('description');
-            $table->string('meta_title');
+            $table->string('meta_title')->nullable();
             $table->text('meta_descp')->nullable();
             $table->string('featured')->nullable();
             $table->string('to_day_deal')->nullable();

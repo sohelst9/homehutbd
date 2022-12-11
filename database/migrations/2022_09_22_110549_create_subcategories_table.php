@@ -18,9 +18,9 @@ return new class extends Migration
             $table->integer('added_by');
             $table->integer('category');
             $table->string('subcategory');
-            $table->string('banner');
-            $table->string('meta_title');
-            $table->string('meta_descp');
+            $table->string('banner')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_descp')->nullable();
             $table->timestamps();
         });
     }

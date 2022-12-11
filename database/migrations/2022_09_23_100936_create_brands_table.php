@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->integer('added_by');
             $table->string('name');
-            $table->string('logo');
-            $table->string('meta_title');
-            $table->string('meta_descp');
+            $table->string('logo')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_descp')->nullable();
             $table->timestamps();
         });
     }

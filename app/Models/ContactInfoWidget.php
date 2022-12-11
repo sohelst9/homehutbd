@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContactInfoWidget extends Model
 {
+    use HasFactory;
     protected $guarded =[];
 }

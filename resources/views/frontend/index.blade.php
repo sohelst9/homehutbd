@@ -2,9 +2,9 @@
 @section('content-frontend')
         <!--start slider section-->
         <section class="slider-section mb-4">
-            <div class="first-slider p-0">
+			<div class="first-slider p-0">
 
-                <div class="banner-slider owl-carousel owl-theme">
+				<div class="banner-slider owl-carousel owl-theme">
                     @foreach ($banners as $banner)
                         <div class="item">
                             <div class="position-relative">
@@ -12,8 +12,7 @@
                                     <h3 class="h3 fw-bold d-none d-md-block">{{ $banner->subtitle }}</h3>
                                     <h1 class="h1 fw-bold">{{ $banner->title }}</h1>
                                     <p class="fw-bold text-dark d-none d-md-block"><i>Last call for upto <span>{{ $banner->discount }}</span> %</i></p>
-                                    <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop
-                                            Now</a>
+                                    <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop Now</a>
                                     </div>
                                 </div>
                                 <a href="javascript:;">
@@ -22,12 +21,11 @@
                             </div>
                         </div>
                     @endforeach
-                    
-              
-                </div>
+				</div>
 
-            </div>
-        </section>
+			</div>
+		</section>
+        
         <!--end slider section-->
         <!--start page wrapper -->
         <div class="page-wrapper">

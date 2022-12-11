@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Copyright extends Model
 {
+    use HasFactory;
     protected $guarded =[];
 }
