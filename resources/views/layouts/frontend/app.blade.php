@@ -56,7 +56,7 @@
                 <div class="container">
                     <nav class="navbar navbar-expand">
                         <div class="shiping-title d-none d-sm-flex">Welcome to our Shopingo store!</div>
-                        <ul class="navbar-nav ms-auto d-none d-lg-flex">
+                        {{-- <ul class="navbar-nav ms-auto d-none d-lg-flex">
                             <li class="nav-item"><a class="nav-link" href="order-tracking.html">Track Order</a>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="about-us.html">About</a>
@@ -69,8 +69,8 @@
                             </li>
                             <li class="nav-item"><a class="nav-link" href="javascript:;">Help & FAQs</a>
                             </li>
-                        </ul>
-                        <ul class="navbar-nav">
+                        </ul> --}}
+                        {{-- <ul class="navbar-nav">
                             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#"
                                     data-bs-toggle="dropdown">USD</a>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
@@ -105,7 +105,7 @@
                                             class="flag-icon flag-icon-ae me-2"></i><span>Arabic</span></a>
                                 </div>
                             </li>
-                        </ul>
+                        </ul> --}}
                         <ul class="navbar-nav social-link ms-lg-2 ms-auto">
                             <li class="nav-item"> <a class="nav-link" href="javascript:;"><i
                                         class='bx bxl-facebook'></i></a>

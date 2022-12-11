@@ -50,6 +50,7 @@ Route::prefix('user')->middleware('auth')->group(function () {
 
     //manage customaer account--
     Route::get('/dashboard', [ProfileController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('/customer/order-list', [ProfileController::class, 'customer_order_list'])->name('customer.order.list');
 
     // SSLCOMMERZ Start
     Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
