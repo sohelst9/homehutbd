@@ -56,56 +56,6 @@
                 <div class="container">
                     <nav class="navbar navbar-expand">
                         <div class="shiping-title d-none d-sm-flex">Welcome to our Shopingo store!</div>
-                        {{-- <ul class="navbar-nav ms-auto d-none d-lg-flex">
-                            <li class="nav-item"><a class="nav-link" href="order-tracking.html">Track Order</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="about-us.html">About</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="shop-categories.html">Our Stores</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="blog-post.html">Blog</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="javascript:;">Help & FAQs</a>
-                            </li>
-                        </ul> --}}
-                        {{-- <ul class="navbar-nav">
-                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown">USD</a>
-                                <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><a class="dropdown-item" href="#">USD</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">EUR</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
-                                    data-bs-toggle="dropdown">
-                                    <div class="lang d-flex gap-1">
-                                        <div><i class="flag-icon flag-icon-um"></i>
-                                        </div>
-                                        <div><span>ENG</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-lg-end">
-                                    <a class="dropdown-item d-flex allign-items-center" href="javascript:;"> <i
-                                            class="flag-icon flag-icon-de me-2"></i><span>German</span>
-                                    </a> <a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-                                            class="flag-icon flag-icon-fr me-2"></i><span>French</span></a>
-                                    <a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-                                            class="flag-icon flag-icon-um me-2"></i><span>English</span></a>
-                                    <a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-                                            class="flag-icon flag-icon-in me-2"></i><span>Hindi</span></a>
-                                    <a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-                                            class="flag-icon flag-icon-cn me-2"></i><span>Chinese</span></a>
-                                    <a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-                                            class="flag-icon flag-icon-ae me-2"></i><span>Arabic</span></a>
-                                </div>
-                            </li>
-                        </ul> --}}
                         <ul class="navbar-nav social-link ms-lg-2 ms-auto">
                             <li class="nav-item"> <a class="nav-link" href="javascript:;"><i
                                         class='bx bxl-facebook'></i></a>
@@ -207,14 +157,14 @@
                                                     </a>
                                                     @endforeach
                                                 </div>
-                                                <a href="javascript:;">
+                                                {{-- <a href="javascript:;">
                                                     <div class="text-center cart-footer d-flex align-items-center">
                                                         <h5 class="mb-0">TOTAL</h5>
                                                         <h5 class="mb-0 ms-auto">$189.00</h5>
                                                     </div>
-                                                </a>
-                                                <div class="d-grid p-3 border-top"> <a href="javascript:;"
-                                                        class="btn btn-dark btn-ecomm">CHECKOUT</a>
+                                                </a> --}}
+                                                <div class="d-grid p-3 border-top"> <a href="{{ route('cart') }}"
+                                                        class="btn btn-dark btn-ecomm">View Cart</a>
                                                 </div>
                                                 
                                             </div>
@@ -227,11 +177,6 @@
                                                 @csrf
                                             </form>
                                         </li>
-
-                                        {{-- <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form> --}}
                                     </ul>
                                 </nav>
                             </div>
@@ -255,68 +200,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('frontend.index') }}">Home</a>
                                 </li>
-                                {{-- <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="tv-shows.html"
-                                        data-bs-toggle="dropdown">
-                                        Categories
-                                    </a>
-                                    <div class="dropdown-menu dropdown-large-menu">
-                                        <div class="row">
-                                            <div class="col-12 col-xl-4">
-                                                <h6 class="large-menu-title">Fashion</h6>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="javascript:;">Casual T-Shirts</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Formal Shirts</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Jackets</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Jeans</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Dresses</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Sneakers</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Belts</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Sports Shoes</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- end col-3 -->
-                                            <div class="col-12 col-xl-4">
-                                                <h6 class="large-menu-title">Electronics</h6>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="javascript:;">Mobiles</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Laptops</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Macbook</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Televisions</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Lighting</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Smart Watch</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">Galaxy Phones</a>
-                                                    </li>
-                                                    <li><a href="javascript:;">PC Monitors</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- end col-3 -->
-                                            <div class="col-12 col-xl-4 d-none d-xl-block">
-                                                <div class="pramotion-banner1">
-                                                    <img src="{{ asset('frontend/new_asset/images/gallery/menu-img.jpg') }}" class="img-fluid"
-                                                        alt="" />
-                                                </div>
-                                            </div>
-                                            <!-- end col-3 -->
-                                        </div>
-                                        <!-- end row -->
-                                    </div>
-                                </li> --}}
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;"
                                         data-bs-toggle="dropdown">
@@ -341,25 +224,15 @@
                                                 </ul>
                                             </li>
                                         @endforeach
-
                                     </ul>
                                 </li>
-
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('frontend.shop') }}">Shop</a>
                                 </li>
-
                                 <li class="nav-item">
                                     <a class="nav-link" href="">About</a>
                                 </li>
                                 
-                                <li class="nav-item"> <a class="nav-link" href="">Our Store</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="">Blog</a>
-                                </li>
-
                                 <li class="nav-item">
                                     <a class="nav-link" href="">Contact</a>
                                 </li>

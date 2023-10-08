@@ -142,9 +142,12 @@
                                                         </div>
                                                     @endauth
                                                 </form>
-                                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                                {{-- <div class="quick-view position-absolute start-0 bottom-0 end-0">
                                                     <a href="javascript:;" data-bs-toggle="modal"
                                                         data-bs-target="#QuickViewProduct">Quick View</a>
+                                                </div> --}}
+                                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                                    <a href="{{ route('single.Product', $product->id) }}">Details View</a>
                                                 </div>
                                                 <a href="{{ route('single.Product', $product->id) }}">
                                                     <img src="{{ asset('images/thumbnailImage/' . $product->thumbnailImage) }}" class="img-fluid"
@@ -260,75 +263,6 @@
                     </div>
                 </section>
                 <!--end New Arrivals-->
-                <!--start Advertise banners-->
-                <section class="py-4 bg-dark">
-                    <div class="container">
-                        <div class="add-banner">
-                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-4 g-4">
-                                <div class="col d-flex">
-                                    <div class="card rounded-0 w-100 border-0 shadow-none">
-                                        <img src="{{ asset('frontend/new_asset/images/promo/04.png') }}" class="img-fluid" alt="...">
-                                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                                class="">-10%</span>
-                                        </div>
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Sunglasses Sale</h5>
-                                            <p class="card-text">See all Sunglasses and get 10% off at all Sunglasses
-                                            </p> <a href="javascript:;" class="btn btn-dark btn-ecomm">SHOP BY
-                                                GLASSES</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col d-flex">
-                                    <div class="card rounded-0 w-100 border-0 shadow-none">
-                                        <img src="{{ asset('frontend/new_asset/images/promo/08.png') }}" class="img-fluid" alt="...">
-                                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                                class="">-80%</span>
-                                        </div>
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Cosmetics Sales</h5>
-                                            <p class="card-text">Buy Cosmetics products and get 30% off at all
-                                                Cosmetics</p> <a href="javascript:;"
-                                                class="btn btn-dark btn-ecomm">SHOP BY COSMETICS</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col d-flex">
-                                    <div class="card rounded-0 w-100 border-0 shadow-none">
-                                        <img src="{{ asset('frontend/new_asset/images/promo/06.png') }}" class="img-fluid h-100"
-                                            alt="...">
-                                        <div class="card-img-overlay text-center top-20">
-                                            <div class="border border-white border-2 py-3 bg-dark-3">
-                                                <h5 class="card-title text-white">Fashion Summer Sale</h5>
-                                                <p class="card-text text-uppercase fs-1 lh-1 mt-3 mb-2 text-white">Up
-                                                    to 80% off</p>
-                                                <p class="card-text fs-5 text-white">On Top Fashion Brands</p> <a
-                                                    href="javascript:;" class="btn btn-white btn-ecomm">SHOP BY
-                                                    FASHION</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col d-flex">
-                                    <div class="card rounded-0 w-100 border-0 shadow-none">
-                                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                                class="">-50%</span>
-                                        </div>
-                                        <img src="{{ asset('frontend/new_asset/images/promo/07.png') }}" class="img-fluid" alt="...">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title fs-2 fw-bold text-uppercase">Super Sale</h5>
-                                            <p class="card-text text-uppercase fs-5 lh-1 mb-2">Up to 50% off</p>
-                                            <p class="card-text">On All Electronic</p> <a href="javascript:;"
-                                                class="btn btn-dark btn-ecomm">HURRY UP!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end row-->
-                        </div>
-                    </div>
-                </section>
-                <!--end Advertise banners-->
                
                 <!--start support info-->
                 <section class="py-5 bg-light">
@@ -379,44 +313,7 @@
                     </div>
                 </section>
                 <!--end support info-->
-                <!--start News-->
-                <section class="py-4">
-                    <div class="container">
-                        <div class="pb-4 text-center">
-                            <h5 class="mb-0 fw-bold text-uppercase">Latest News</h5>
-                        </div>
-                        <div class="product-grid">
-                            <div class="latest-news owl-carousel owl-theme">
-                                <div class="item">
-                                    <div class="card rounded-0 product-card border">
-                                        <div class="news-date">
-                                            <div class="date-number">24</div>
-                                            <div class="date-month">FEB</div>
-                                        </div>
-                                        <a href="javascript:;">
-                                            <img src="{{ asset('frontend/new_asset/images/blogs/02.png') }}" class="card-img-top border-bottom"
-                                                alt="...">
-                                        </a>
-                                        <div class="card-body">
-                                            <div class="news-title">
-                                                <a href="javascript:;">
-                                                    <h5 class="mb-3 text-capitalize">Blog Short Title</h5>
-                                                </a>
-                                            </div>
-                                            <p class="news-content mb-0">Lorem ipsum dolor sit amet, consectetur
-                                                adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...
-                                            </p>
-                                        </div>
-                                        <div class="card-footer border-top bg-transparent">
-                                            <a href="javascript:;" class="link-dark">0 Comments</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!--end News-->
+
                 <!--start brands-->
                 <section class="py-4">
                     <div class="container">
@@ -439,124 +336,6 @@
                     </div>
                 </section>
                 <!--end brands-->
-
-                <!--start bottom products section-->
-                <section class="py-4 border-top">
-                    <div class="container">
-                        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-                            <div class="col">
-                                <div class="bestseller-list mb-3">
-                                    <h6 class="mb-3 text-uppercase fw-bold">Best Selling Products</h6>
-                                    @foreach ($latest_products->take(4) as $latest_product)
-                                        <hr>
-                                        <div class="d-flex align-items-center gap-3">
-                                            <div class="bottom-product-img">
-                                                <a href="product-details.html">
-                                                    <img src="{{ asset('images/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
-                                                        alt="">
-                                                </a>
-                                            </div>
-                                            <div class="">
-                                                <h6 class="mb-0 fw-light mb-1 fw-bold">{{ substr($latest_product->productName, 0, 30) }}</h6>
-                                                <div class="rating"> <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                </div>
-                                                <p class="mb-0 pro-price"><strong>&#2547;{{ $latest_product->after_discount }}</strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="featured-list mb-3">
-                                    <h6 class="mb-3 text-uppercase fw-bold">Featured Products</h6>
-                                    @foreach ($latest_products->take(4) as $latest_product)
-                                        <hr>
-                                        <div class="d-flex align-items-center gap-3">
-                                            <div class="bottom-product-img">
-                                                <a href="product-details.html">
-                                                    <img src="{{ asset('images/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
-                                                        alt="">
-                                                </a>
-                                            </div>
-                                            <div class="">
-                                                <h6 class="mb-0 fw-light mb-1 fw-bold">{{ substr($latest_product->productName, 0, 30) }}</h6>
-                                                <div class="rating"> <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                </div>
-                                                <p class="mb-0 pro-price"><strong>&#2547;{{ $latest_product->after_discount }}</strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="new-arrivals-list mb-3">
-                                    <h6 class="mb-3 text-uppercase fw-bold">New arrivals</h6>
-                                    @foreach ($latest_products->take(4) as $latest_product)
-                                        <hr>
-                                        <div class="d-flex align-items-center gap-3">
-                                            <div class="bottom-product-img">
-                                                <a href="product-details.html">
-                                                    <img src="{{ asset('images/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
-                                                        alt="">
-                                                </a>
-                                            </div>
-                                            <div class="">
-                                                <h6 class="mb-0 fw-light mb-1 fw-bold">{{ substr($latest_product->productName, 0, 30) }}</h6>
-                                                <div class="rating"> <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                </div>
-                                                <p class="mb-0 pro-price"><strong>&#2547;{{ $latest_product->after_discount }}</strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="top-rated-products-list mb-3">
-                                    <h6 class="mb-3 text-uppercase fw-bold">Top rated Products</h6>
-                                    @foreach ($latest_products->take(4) as $latest_product)
-                                        <hr>
-                                        <div class="d-flex align-items-center gap-3">
-                                            <div class="bottom-product-img">
-                                                <a href="product-details.html">
-                                                    <img src="{{ asset('images/thumbnailImage/' . $latest_product->thumbnailImage) }}" width="80"
-                                                        alt="">
-                                                </a>
-                                            </div>
-                                            <div class="">
-                                                <h6 class="mb-0 fw-light mb-1 fw-bold">{{ substr($latest_product->productName, 0, 30) }}</h6>
-                                                <div class="rating"> <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                    <i class="bx bxs-star text-warning"></i>
-                                                </div>
-                                                <p class="mb-0 pro-price"><strong>&#2547;{{ $latest_product->after_discount }}</strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        <!--end row-->
-                    </div>
-                </section>
-                <!--end bottom products section-->
             </div>
         </div>
         <!--end page wrapper -->
@@ -564,7 +343,7 @@
 
         <!--start quick view product-->
         <!-- Modal -->
-        <div class="modal fade" id="QuickViewProduct">
+        {{-- <div class="modal fade" id="QuickViewProduct">
             <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-xl-down">
                 <div class="modal-content rounded-0 border-0">
                     <div class="modal-body">
@@ -663,6 +442,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--end quick view product-->
 @endsection

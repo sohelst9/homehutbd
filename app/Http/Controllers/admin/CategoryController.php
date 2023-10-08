@@ -17,10 +17,10 @@ class CategoryController extends Controller
     {
         $a= $request->input('category_search');
         if($a != ''){
-            $all_category = Category::where('name', 'like', '%'.$a.'%')->latest()->paginate(2);
+            $all_category = Category::where('name', 'like', '%'.$a.'%')->latest()->paginate(10);
         }
         else{
-            $all_category = Category::latest()->paginate(5);
+            $all_category = Category::latest()->paginate(10);
         }
         // $all_category = Category::paginate(10);
         return view('admin.category.index',[
@@ -37,7 +37,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'banner'=>'required|mimes:png,jpg,jpeg',
+            'banner'=>'required|mimes:png,jpg,jpeg,webp',
             'meta_title'=>'required',
             'meta_descp'=>'required',
         ]);
@@ -87,7 +87,7 @@ class CategoryController extends Controller
         if($request->hasFile('banner')){
             $request->validate([
                 'name'=>'required',
-                'banner'=>'required|mimes:png,jpg,jpeg',
+                'banner'=>'required|mimes:png,jpg,jpeg,webp',
                 'meta_title'=>'required',
                 'meta_descp'=>'required',
             ]);
